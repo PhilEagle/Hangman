@@ -50,6 +50,8 @@
 		359731BE15C334E100400D87 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A915C334E100400D87 /* SVPullToRefresh.m */; };
 		359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731AC15C334E100400D87 /* UIImage+RWExtensions.m */; };
 		359731EE15C3363700400D87 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359731ED15C3363700400D87 /* QuartzCore.framework */; };
+		35D3B69015C438CE007BA143 /* icon_hangman.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D3B68E15C438CE007BA143 /* icon_hangman.png */; };
+		35D3B69115C438CE007BA143 /* icon_hangman@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D3B68F15C438CE007BA143 /* icon_hangman@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		359731AB15C334E100400D87 /* UIImage+RWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RWExtensions.h"; sourceTree = "<group>"; };
 		359731AC15C334E100400D87 /* UIImage+RWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RWExtensions.m"; sourceTree = "<group>"; };
 		359731ED15C3363700400D87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		35D3B68E15C438CE007BA143 /* icon_hangman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_hangman.png; sourceTree = "<group>"; };
+		35D3B68F15C438CE007BA143 /* icon_hangman@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_hangman@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,7 @@
 		3573DFA215ACA1A100D37742 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35D3B68D15C438CE007BA143 /* Icons */,
 				3547CD2B15AE223F00EC99D0 /* EasyWords */,
 				3547CD2815AE213F00EC99D0 /* Stickman */,
 				3547CCE515AE1BB800EC99D0 /* Background */,
@@ -379,6 +384,15 @@
 			path = "UIImage+RWExtensions";
 			sourceTree = "<group>";
 		};
+		35D3B68D15C438CE007BA143 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				35D3B68E15C438CE007BA143 /* icon_hangman.png */,
+				35D3B68F15C438CE007BA143 /* icon_hangman@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -440,6 +454,8 @@
 				3547CD2A15AE213F00EC99D0 /* Stickman in Resources */,
 				3547CD2E15AE223F00EC99D0 /* EasyWords in Resources */,
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,
+				35D3B69015C438CE007BA143 /* icon_hangman.png in Resources */,
+				35D3B69115C438CE007BA143 /* icon_hangman@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
