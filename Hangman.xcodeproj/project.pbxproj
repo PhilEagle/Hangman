@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3544A63D1607564900B7E395 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3544A63C1607564900B7E395 /* Default@2x.png */; };
+		3544A6401607564C00B7E395 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3544A63F1607564C00B7E395 /* Default.png */; };
+		3544A6421607564E00B7E395 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3544A6411607564E00B7E395 /* Default-568h@2x.png */; };
 		3547CCAC15AE0DA200EC99D0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3547CCAB15AE0DA200EC99D0 /* AVFoundation.framework */; };
 		3547CCDC15AE1AB400EC99D0 /* attribution.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3547CCDB15AE1AB400EC99D0 /* attribution.txt */; };
 		3547CCEA15AE1BB800EC99D0 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3547CCE615AE1BB800EC99D0 /* bg.png */; };
@@ -47,7 +50,6 @@
 		359731BB15C334E100400D87 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A015C334E100400D87 /* JSNotifier.m */; };
 		359731BC15C334E100400D87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A315C334E100400D87 /* MBProgressHUD.m */; };
 		359731BD15C334E100400D87 /* PrettyBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A615C334E100400D87 /* PrettyBytes.m */; };
-		359731BE15C334E100400D87 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A915C334E100400D87 /* SVPullToRefresh.m */; };
 		359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731AC15C334E100400D87 /* UIImage+RWExtensions.m */; };
 		359731EE15C3363700400D87 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359731ED15C3363700400D87 /* QuartzCore.framework */; };
 		35D3B69015C438CE007BA143 /* icon_hangman.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D3B68E15C438CE007BA143 /* icon_hangman.png */; };
@@ -55,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3544A63C1607564900B7E395 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		3544A63F1607564C00B7E395 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3544A6411607564E00B7E395 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3547CCAB15AE0DA200EC99D0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3547CCDB15AE1AB400EC99D0 /* attribution.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = attribution.txt; sourceTree = "<group>"; };
 		3547CCE615AE1BB800EC99D0 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -125,8 +130,6 @@
 		359731A315C334E100400D87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		359731A515C334E100400D87 /* PrettyBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyBytes.h; sourceTree = "<group>"; };
 		359731A615C334E100400D87 /* PrettyBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyBytes.m; sourceTree = "<group>"; };
-		359731A815C334E100400D87 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
-		359731A915C334E100400D87 /* SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPullToRefresh.m; sourceTree = "<group>"; };
 		359731AB15C334E100400D87 /* UIImage+RWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RWExtensions.h"; sourceTree = "<group>"; };
 		359731AC15C334E100400D87 /* UIImage+RWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RWExtensions.m"; sourceTree = "<group>"; };
 		359731ED15C3363700400D87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,9 @@
 		3573DF7615AC9F7800D37742 = {
 			isa = PBXGroup;
 			children = (
+				3544A6411607564E00B7E395 /* Default-568h@2x.png */,
+				3544A63F1607564C00B7E395 /* Default.png */,
+				3544A63C1607564900B7E395 /* Default@2x.png */,
 				3573DF8B15AC9F7800D37742 /* Hangman */,
 				3573DF8415AC9F7800D37742 /* Frameworks */,
 				3573DF8215AC9F7800D37742 /* Products */,
@@ -288,7 +294,6 @@
 				3597319E15C334E100400D87 /* JSNotifier */,
 				359731A115C334E100400D87 /* MBProgressHUD */,
 				359731A415C334E100400D87 /* PrettyBytes */,
-				359731A715C334E100400D87 /* SVPullToRefresh */,
 				359731AA15C334E100400D87 /* UIImage+RWExtensions */,
 			);
 			path = libs;
@@ -364,15 +369,6 @@
 				359731A615C334E100400D87 /* PrettyBytes.m */,
 			);
 			path = PrettyBytes;
-			sourceTree = "<group>";
-		};
-		359731A715C334E100400D87 /* SVPullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				359731A815C334E100400D87 /* SVPullToRefresh.h */,
-				359731A915C334E100400D87 /* SVPullToRefresh.m */,
-			);
-			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		359731AA15C334E100400D87 /* UIImage+RWExtensions */ = {
@@ -456,6 +452,9 @@
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,
 				35D3B69015C438CE007BA143 /* icon_hangman.png in Resources */,
 				35D3B69115C438CE007BA143 /* icon_hangman@2x.png in Resources */,
+				3544A63D1607564900B7E395 /* Default@2x.png in Resources */,
+				3544A6401607564C00B7E395 /* Default.png in Resources */,
+				3544A6421607564E00B7E395 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +492,6 @@
 				359731BB15C334E100400D87 /* JSNotifier.m in Sources */,
 				359731BC15C334E100400D87 /* MBProgressHUD.m in Sources */,
 				359731BD15C334E100400D87 /* PrettyBytes.m in Sources */,
-				359731BE15C334E100400D87 /* SVPullToRefresh.m in Sources */,
 				359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

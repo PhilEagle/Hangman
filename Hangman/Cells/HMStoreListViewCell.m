@@ -7,6 +7,7 @@
 //
 
 #import "HMStoreListViewCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation HMStoreListViewCell
 
