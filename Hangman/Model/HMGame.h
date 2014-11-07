@@ -22,10 +22,10 @@ typedef enum GameState {
 @property (readonly, strong) NSString * wordToGuess;
 @property (readonly, strong) NSMutableString * displayedChars;
 @property (readonly, assign) GameState gameState;
-@property (readonly, assign) int wrongGuesses;
-@property (readonly, assign) int maxWrongGuesses;
+@property (readonly, assign) NSInteger wrongGuesses;
+@property (readonly, assign) NSInteger maxWrongGuesses;
 
-- (void)newGameWithWords:(HMWords *)words maxWrongGuesses:(int)maxWrongGuesses;
+- (void)newGameWithWords:(HMWords *)words maxWrongGuesses:(NSInteger)maxWrongGuesses;
 - (BOOL)guess:(NSString *)character;
 - (void)getHint;
 

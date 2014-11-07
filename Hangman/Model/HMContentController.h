@@ -26,7 +26,7 @@ UIKIT_EXTERN NSString *const HMContentControllerUnlockedWordsDidChangeNotificati
 
 @property (nonatomic, strong) HMTheme * currentTheme;
 @property (nonatomic, strong) HMWords * currentWords;
-@property (nonatomic, assign) int hints;
+@property (nonatomic, assign) NSInteger hints;
 
 - (void)unlockThemeWithDirURL:(NSURL *)dirURL;
 - (void)unlockWordsWithDirURL:(NSURL *)dirURL;

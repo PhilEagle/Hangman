@@ -19,8 +19,8 @@
 
 + (BOOL)themeAtURL:(NSURL *)url;
 - (id)initWithDirURL:(NSURL *)url;
-- (int)maxWrongGuesses;
-- (NSURL *)imageURLForWrongGuesses:(int)wrongGuesses;
+- (NSInteger)maxWrongGuesses;
+- (NSURL *)imageURLForWrongGuesses:(NSInteger)wrongGuesses;
 
 
 @end

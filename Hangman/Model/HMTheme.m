@@ -55,11 +55,11 @@
     return self;
 }
 
-- (int)maxWrongGuesses {
+- (NSInteger)maxWrongGuesses {
     return _imageURLs.count;
 }
 
-- (NSURL *)imageURLForWrongGuesses:(int)wrongGuesses {
+- (NSURL *)imageURLForWrongGuesses:(NSInteger)wrongGuesses {
     if (wrongGuesses == 0) {
         return nil;
     }

@@ -13,7 +13,7 @@
     NSMutableSet * _guessedChars;
 }
 
-- (void)newGameWithWords:(HMWords *)words maxWrongGuesses:(int)maxWrongGuesses {
+- (void)newGameWithWords:(HMWords *)words maxWrongGuesses:(NSInteger)maxWrongGuesses {
     
     // Reset game
     _gameState = GameStatePlaying;
@@ -62,6 +62,9 @@
     
     // Check state
     NSAssert(_gameState == GameStatePlaying, @"Unexpected state");
+  
+    // Make character uppercase
+    character = [character uppercaseString];
     
     // False if already guessed
     if ([_guessedChars containsObject:character]) {

@@ -49,11 +49,11 @@ NSString *const HMContentControllerUnlockedWordsDidChangeNotification = @"HMCont
     return self;
 }
 
-- (int)hints {
+- (NSInteger)hints {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"com.razeware.hangman.hints"];
 }
 
-- (void)setHints:(int)hints {
+- (void)setHints:(NSInteger)hints {
     [[NSUserDefaults standardUserDefaults] setInteger:hints forKey:@"com.razeware.hangman.hints"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:HMContentControllerHintsDidChangeNotification object:nil userInfo:nil];

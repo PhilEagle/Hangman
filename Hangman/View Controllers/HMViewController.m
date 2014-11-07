@@ -57,6 +57,7 @@
     // Create hidden text field
     UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
     self.hiddenTextField = textField;
+    self.hiddenTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.hiddenTextField.hidden = YES;
     self.hiddenTextField.delegate = self;
     [self.hiddenTextField addTarget:self action:@selector(hiddenTextFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -185,14 +186,14 @@
     } else if (_game.gameState == GameStateLost) {
         self.hintLabel.text = @"You Lose.";
     } else {
-        self.hintLabel.text = [NSString stringWithFormat:@"Hints Left: %d", [HMContentController sharedInstance].hints];
+        self.hintLabel.text = [NSString stringWithFormat:@"Hints Left: %ld", (long)[HMContentController sharedInstance].hints];
     }
     
 }
 
 - (void)checkForWin {
     if (_game.gameState == GameStateWon) {
-        int hints = [HMContentController sharedInstance].hints;
+        NSInteger hints = [HMContentController sharedInstance].hints;
         [[HMContentController sharedInstance] setHints:hints + 1]; // You get a free hint when you win a game
         [_winSoundPlayer play];
         [self performSelector:@selector(newGame:) withObject:nil afterDelay:2.0];
@@ -214,7 +215,7 @@
         [alertView show];
         return;
     }
-    int hints = [HMContentController sharedInstance].hints;
+    NSInteger hints = [HMContentController sharedInstance].hints;
     [[HMContentController sharedInstance] setHints:hints - 1];
     [_game getHint];
     [_correctSoundPlayer play];

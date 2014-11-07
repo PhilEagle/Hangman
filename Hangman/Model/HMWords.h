@@ -15,7 +15,7 @@
 
 + (BOOL)wordsAtURL:(NSURL *)url;
 - (id)initWithDirURL:(NSURL *)url;
-- (int)count;
+- (NSInteger)count;
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 
 @end

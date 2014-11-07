@@ -32,7 +32,7 @@
     return self;
 }
 
-- (int)count {
+- (NSInteger)count {
     return _words.count;
 }
 
