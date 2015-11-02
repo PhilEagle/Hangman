@@ -8,7 +8,7 @@
 
 #import "HMWordsViewController.h"
 #import "HMContentController.h"
-#import "HMWords.h"
+#import "Hangman-swift.h"
 
 @implementation HMWordsViewController {
     NSIndexPath * _selectedIndexPath;

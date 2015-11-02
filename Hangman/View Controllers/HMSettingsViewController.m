@@ -9,7 +9,7 @@
 #import "HMSettingsViewController.h"
 #import "HMContentController.h"
 #import "HMTheme.h"
-#import "HMWords.h"
+#import "Hangman-swift.h"
 
 @interface HMSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *wordsLabel;

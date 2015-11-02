@@ -23,7 +23,6 @@
 		3597315B15C3340000400D87 /* HMContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315215C3340000400D87 /* HMContentController.m */; };
 		3597315C15C3340000400D87 /* HMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315415C3340000400D87 /* HMGame.m */; };
 		3597315E15C3340000400D87 /* HMTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315815C3340000400D87 /* HMTheme.m */; };
-		3597315F15C3340000400D87 /* HMWords.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315A15C3340000400D87 /* HMWords.m */; };
 		3597316615C3342600400D87 /* HMStoreListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597316415C3342500400D87 /* HMStoreListViewCell.m */; };
 		3597317715C3345800400D87 /* HMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597316B15C3345800400D87 /* HMSettingsViewController.m */; };
 		3597317815C3345800400D87 /* HMStoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597316D15C3345800400D87 /* HMStoreDetailViewController.m */; };
@@ -40,6 +39,7 @@
 		35F6541118292F7C004A1212 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35F6540E18292F7C004A1212 /* ProgressHUD.bundle */; };
 		35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F6541018292F7C004A1212 /* ProgressHUD.m */; };
 		35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F95B73182AA07100E27AD3 /* JSNotifier.m */; };
+		4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A411A6A1BE7A66500BE0709 /* HMWords.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,8 +65,6 @@
 		3597315415C3340000400D87 /* HMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGame.m; sourceTree = "<group>"; };
 		3597315715C3340000400D87 /* HMTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTheme.h; sourceTree = "<group>"; };
 		3597315815C3340000400D87 /* HMTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTheme.m; sourceTree = "<group>"; };
-		3597315915C3340000400D87 /* HMWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWords.h; sourceTree = "<group>"; };
-		3597315A15C3340000400D87 /* HMWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWords.m; sourceTree = "<group>"; };
 		3597316315C3342500400D87 /* HMStoreListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStoreListViewCell.h; sourceTree = "<group>"; };
 		3597316415C3342500400D87 /* HMStoreListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStoreListViewCell.m; sourceTree = "<group>"; };
 		3597316A15C3345800400D87 /* HMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSettingsViewController.h; sourceTree = "<group>"; };
@@ -83,7 +81,7 @@
 		3597317515C3345800400D87 /* HMWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWordsViewController.m; sourceTree = "<group>"; };
 		3597317E15C3349F00400D87 /* HMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAppDelegate.h; sourceTree = "<group>"; };
 		3597317F15C3349F00400D87 /* HMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAppDelegate.m; sourceTree = "<group>"; };
-		3597318015C3349F00400D87 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3597318015C3349F00400D87 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = Main/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		359731A515C334E100400D87 /* PrettyBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyBytes.h; sourceTree = "<group>"; };
 		359731A615C334E100400D87 /* PrettyBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyBytes.m; sourceTree = "<group>"; };
 		359731AB15C334E100400D87 /* UIImage+RWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RWExtensions.h"; sourceTree = "<group>"; };
@@ -95,6 +93,8 @@
 		35F6541018292F7C004A1212 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		35F95B72182AA07100E27AD3 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
 		35F95B73182AA07100E27AD3 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
+		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +156,7 @@
 		3573DF8B15AC9F7800D37742 /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				3597318015C3349F00400D87 /* MainStoryboard.storyboard */,
 				3597315015C333FF00400D87 /* Model */,
 				3597316015C3342500400D87 /* Cells */,
 				3597316715C3345800400D87 /* View Controllers */,
@@ -197,10 +198,10 @@
 				3597315415C3340000400D87 /* HMGame.m */,
 				3597315715C3340000400D87 /* HMTheme.h */,
 				3597315815C3340000400D87 /* HMTheme.m */,
-				3597315915C3340000400D87 /* HMWords.h */,
-				3597315A15C3340000400D87 /* HMWords.m */,
 				3597315115C3340000400D87 /* HMContentController.h */,
 				3597315215C3340000400D87 /* HMContentController.m */,
+				4A411A6A1BE7A66500BE0709 /* HMWords.swift */,
+				4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,7 +239,6 @@
 			children = (
 				3597317E15C3349F00400D87 /* HMAppDelegate.h */,
 				3597317F15C3349F00400D87 /* HMAppDelegate.m */,
-				3597318015C3349F00400D87 /* MainStoryboard.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -318,6 +318,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HM;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Ray Wenderlich";
 			};
@@ -368,12 +369,12 @@
 				3597315B15C3340000400D87 /* HMContentController.m in Sources */,
 				3597315C15C3340000400D87 /* HMGame.m in Sources */,
 				3597315E15C3340000400D87 /* HMTheme.m in Sources */,
-				3597315F15C3340000400D87 /* HMWords.m in Sources */,
 				35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */,
 				3597316615C3342600400D87 /* HMStoreListViewCell.m in Sources */,
 				3597317715C3345800400D87 /* HMSettingsViewController.m in Sources */,
 				3597317815C3345800400D87 /* HMStoreDetailViewController.m in Sources */,
 				3597317915C3345800400D87 /* HMStoreListViewController.m in Sources */,
+				4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */,
 				3597317A15C3345800400D87 /* HMThemeViewController.m in Sources */,
 				3597317B15C3345800400D87 /* HMViewController.m in Sources */,
 				3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */,
@@ -456,7 +457,10 @@
 				GCC_PREFIX_HEADER = "Hangman/Hangman-Prefix.pch";
 				INFOPLIST_FILE = "Hangman/Hangman-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hangman/Model/Hangman-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -471,7 +475,9 @@
 				GCC_PREFIX_HEADER = "Hangman/Hangman-Prefix.pch";
 				INFOPLIST_FILE = "Hangman/Hangman-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hangman/Model/Hangman-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

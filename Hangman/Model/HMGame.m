@@ -7,7 +7,7 @@
 //
 
 #import "HMGame.h"
-#import "HMWords.h"
+#import "Hangman-swift.h"
 
 @implementation HMGame {
     NSMutableSet * _guessedChars;
