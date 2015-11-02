@@ -39,6 +39,8 @@
 		35F6541118292F7C004A1212 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35F6540E18292F7C004A1212 /* ProgressHUD.bundle */; };
 		35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F6541018292F7C004A1212 /* ProgressHUD.m */; };
 		35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F95B73182AA07100E27AD3 /* JSNotifier.m */; };
+		4A160D191BE7BD0C00952FA3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A160D181BE7BD0C00952FA3 /* StoreKit.framework */; };
+		4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */; };
 		4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A411A6A1BE7A66500BE0709 /* HMWords.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		35F6541018292F7C004A1212 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		35F95B72182AA07100E27AD3 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
 		35F95B73182AA07100E27AD3 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
+		4A160D181BE7BD0C00952FA3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,7 @@
 				359731EE15C3363700400D87 /* QuartzCore.framework in Frameworks */,
 				3573DF8A15AC9F7800D37742 /* CoreGraphics.framework in Frameworks */,
 				3547CCAC15AE0DA200EC99D0 /* AVFoundation.framework in Frameworks */,
+				4A160D191BE7BD0C00952FA3 /* StoreKit.framework in Frameworks */,
 				3573DF8615AC9F7800D37742 /* UIKit.framework in Frameworks */,
 				3573DF8815AC9F7800D37742 /* Foundation.framework in Frameworks */,
 			);
@@ -144,6 +149,7 @@
 		3573DF8415AC9F7800D37742 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A160D181BE7BD0C00952FA3 /* StoreKit.framework */,
 				359731ED15C3363700400D87 /* QuartzCore.framework */,
 				3547CCAB15AE0DA200EC99D0 /* AVFoundation.framework */,
 				3573DF8515AC9F7800D37742 /* UIKit.framework */,
@@ -157,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				3597318015C3349F00400D87 /* MainStoryboard.storyboard */,
+				4A160D1A1BE7C35500952FA3 /* In-App Purchases */,
 				3597315015C333FF00400D87 /* Model */,
 				3597316015C3342500400D87 /* Cells */,
 				3597316715C3345800400D87 /* View Controllers */,
@@ -291,6 +298,15 @@
 			path = JSNotifier;
 			sourceTree = "<group>";
 		};
+		4A160D1A1BE7C35500952FA3 /* In-App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */,
+			);
+			name = "In-App Purchases";
+			path = "../hangman/In-App Purchases";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +337,16 @@
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Ray Wenderlich";
+				TargetAttributes = {
+					3573DF8015AC9F7800D37742 = {
+						DevelopmentTeam = Q6ZDEWDEA2;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 3573DF7B15AC9F7800D37742 /* Build configuration list for PBXProject "Hangman" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -369,6 +395,7 @@
 				3597315B15C3340000400D87 /* HMContentController.m in Sources */,
 				3597315C15C3340000400D87 /* HMGame.m in Sources */,
 				3597315E15C3340000400D87 /* HMTheme.m in Sources */,
+				4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */,
 				35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */,
 				3597316615C3342600400D87 /* HMStoreListViewCell.m in Sources */,
 				3597317715C3345800400D87 /* HMSettingsViewController.m in Sources */,
@@ -453,12 +480,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hangman/Hangman-Prefix.pch";
 				INFOPLIST_FILE = "Hangman/Hangman-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phileagledev.SwiftHangman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hangman/Model/Hangman-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -471,12 +502,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hangman/Hangman-Prefix.pch";
 				INFOPLIST_FILE = "Hangman/Hangman-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phileagledev.SwiftHangman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hangman/Model/Hangman-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
