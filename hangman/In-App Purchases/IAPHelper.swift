@@ -9,11 +9,32 @@
 import Foundation
 import StoreKit
 
+typealias RequestProductsCompletionHandler = (Bool, [IAPProduct]?) -> ()
+
 class IAHelper: NSObject {
-    var productsRequest: SKProductsRequest?
+    private var products: [String: IAPProduct]
+    private var productsRequest: SKProductsRequest?
+    private var completionHandler: RequestProductsCompletionHandler?
+    
+    init(products: [String: IAPProduct]) {
+        self.products = products
+        super.init()
+    }
     
     // getting product identifier (using productsRequest callback)
-    func requestProductsWithProductIdentifier(productIdentifiers: Set<String>) {
+    func requestProductsWithCompletionHandler(completion: RequestProductsCompletionHandler?) {
+        
+        //1 storing the completion block
+        completionHandler = completion
+        
+        //2 Creating the pool of identifiers
+        var productIdentifiers = Set<String>()
+        for product in products.values {
+            product.availableForPurchase = false
+            productIdentifiers.insert(product.productIdentifier)
+        }
+        
+        //3 Requesting in-app products
         productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
         productsRequest!.delegate = self
         productsRequest!.start()
@@ -26,19 +47,49 @@ extension IAHelper: SKProductsRequestDelegate {
         print("Loaded list of products...")
         productsRequest = nil
         
+        //1 connect IAPProduct between apple and our app
         let skProducts = response.products
-        
         for skProduct in skProducts {
-            print("Found product: \(skProduct.productIdentifier) \(skProduct.localizedTitle) \(NSString(format: "%0.2f", skProduct.price.floatValue)))")
+            guard let product = products[skProduct.productIdentifier] else {
+                continue
+            }
+            product.skProduct = skProduct
+            product.availableForPurchase = true
         }
         
-        for invalidProduct in response.invalidProductIdentifiers {
-            print("Found invalid product: \(invalidProduct)")
+        //2 deactivate invalid products
+        for invalidProductID in response.invalidProductIdentifiers {
+            guard let product = products[invalidProductID] else {
+                continue
+            }
+            product.availableForPurchase = false
+            print("Invalid product ID, removing: \(invalidProductID)")
         }
+        
+        //3 store available products in an array
+        var availableProducts = [IAPProduct]()
+        for product in products.values {
+            if product.availableForPurchase {
+                availableProducts.append(product)
+            }
+        }
+        
+        //4 start completion closure
+        if let completionHandler = completionHandler {
+            completionHandler(true, availableProducts)
+        }
+        completionHandler = nil
     }
     
     func request(request: SKRequest, didFailWithError error: NSError) {
         print("Failed to load list of products: \(error.localizedDescription)")
+        
         productsRequest = nil
+        
+        //4 start completion closure
+        if let completionHandler = completionHandler {
+            completionHandler(false, nil)
+        }
+        completionHandler = nil
     }
 }

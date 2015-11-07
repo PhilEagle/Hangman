@@ -19,8 +19,6 @@ class HMStoreListViewController: UITableViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneTapped:")
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .Plain, target: self, action: "restoreTapped:")
-        
-        HMIAPHelper.sharedInstance.requestProducts()
     }
 
     //MARK: - UITableView datasource

@@ -12,11 +12,11 @@ class HMIAPHelper: IAHelper {
     
     static let sharedInstance = HMIAPHelper()
     
-    func requestProducts() {
-        var productsIDs = Set<String>()
-        productsIDs.insert("com.phileagledev.swifthangman.tenhints")
-        productsIDs.insert("com.phileagledev.swifthangman.hundredhints")
+    init() {
+        let tenHints = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.tenhints")
+        let hundredHints = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.hundredhints")
+        let products = [tenHints.productIdentifier: tenHints, hundredHints.productIdentifier: hundredHints]
         
-        return super.requestProductsWithProductIdentifier(productsIDs)
+        super.init(products: products)
     }
 }
