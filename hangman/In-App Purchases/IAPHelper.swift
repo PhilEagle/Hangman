@@ -27,6 +27,9 @@ extension IAHelper: SKProductsRequestDelegate {
         productsRequest = nil
         
         let skProducts = response.products
+        
+        NSLog("%@", response.invalidProductIdentifiers)
+        
         for skProduct in skProducts {
             print("Found product: \(skProduct.productIdentifier) \(skProduct.localizedTitle) \(NSString(format: "%0.2f", skProduct.price.floatValue)))")
         }

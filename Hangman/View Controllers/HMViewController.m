@@ -11,7 +11,7 @@
 #import "HMTheme.h"
 #import <AVFoundation/AVFoundation.h>
 #import "HMContentController.h"
-#import "Hangman-swift.h"
+#import "Swift_Hangman-swift.h"
 #import "UIImage+RWExtensions.h"
 
 @interface HMViewController () <UITextFieldDelegate>

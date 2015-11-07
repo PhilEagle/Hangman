@@ -16,6 +16,8 @@ class HMIAPHelper: IAHelper {
         var productsIDs = Set<String>()
         productsIDs.insert("com.phileagledev.swifthangman.tenhints")
         productsIDs.insert("com.phileagledev.swifthangman.hundredhints")
+        productsIDs.insert("tenhints")
+        productsIDs.insert("hundredhints")
         
         return super.requestProductsWithProductIdentifier(productsIDs)
     }

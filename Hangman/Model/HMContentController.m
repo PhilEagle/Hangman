@@ -8,7 +8,7 @@
 
 #import "HMContentController.h"
 #import "HMTheme.h"
-#import "Hangman-swift.h"
+#import "Swift_Hangman-swift.h"
 NSString *const HMContentControllerCurrentThemeDidChangeNotification = @"HMContentControllerCurrentThemeDidChangeNotification";
 NSString *const HMContentControllerCurrentWordsDidChangeNotification = @"HMContentControllerCurrentWordsDidChangeNotification";
 NSString *const HMContentControllerHintsDidChangeNotification = @"HMContentControllerHintsDidChangeNotification";
