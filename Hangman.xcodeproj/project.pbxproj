@@ -19,7 +19,6 @@
 		3573DF8815AC9F7800D37742 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3573DF8715AC9F7800D37742 /* Foundation.framework */; };
 		3573DF8A15AC9F7800D37742 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3573DF8915AC9F7800D37742 /* CoreGraphics.framework */; };
 		3573DF9015AC9F7800D37742 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3573DF8E15AC9F7800D37742 /* InfoPlist.strings */; };
-		3573DF9215AC9F7800D37742 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3573DF9115AC9F7800D37742 /* main.m */; };
 		3597315B15C3340000400D87 /* HMContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315215C3340000400D87 /* HMContentController.m */; };
 		3597315C15C3340000400D87 /* HMGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315415C3340000400D87 /* HMGame.m */; };
 		3597315E15C3340000400D87 /* HMTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597315815C3340000400D87 /* HMTheme.m */; };
@@ -27,7 +26,6 @@
 		3597317A15C3345800400D87 /* HMThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317115C3345800400D87 /* HMThemeViewController.m */; };
 		3597317B15C3345800400D87 /* HMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317315C3345800400D87 /* HMViewController.m */; };
 		3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317515C3345800400D87 /* HMWordsViewController.m */; };
-		3597318115C3349F00400D87 /* HMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317F15C3349F00400D87 /* HMAppDelegate.m */; };
 		3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597318015C3349F00400D87 /* MainStoryboard.storyboard */; };
 		359731BD15C334E100400D87 /* PrettyBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A615C334E100400D87 /* PrettyBytes.m */; };
 		359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731AC15C334E100400D87 /* UIImage+RWExtensions.m */; };
@@ -39,6 +37,7 @@
 		4A160D191BE7BD0C00952FA3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A160D181BE7BD0C00952FA3 /* StoreKit.framework */; };
 		4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */; };
 		4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */; };
+		4A33ED2C1BEE5B6B006E23B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A33ED2B1BEE5B6B006E23B8 /* AppDelegate.swift */; };
 		4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A411A6A1BE7A66500BE0709 /* HMWords.swift */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
@@ -61,7 +60,6 @@
 		3573DF8915AC9F7800D37742 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3573DF8D15AC9F7800D37742 /* Hangman-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hangman-Info.plist"; sourceTree = "<group>"; };
 		3573DF8F15AC9F7800D37742 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3573DF9115AC9F7800D37742 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3573DF9315AC9F7800D37742 /* Hangman-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Prefix.pch"; sourceTree = "<group>"; };
 		3597315115C3340000400D87 /* HMContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMContentController.h; sourceTree = "<group>"; };
 		3597315215C3340000400D87 /* HMContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMContentController.m; sourceTree = "<group>"; };
@@ -77,8 +75,6 @@
 		3597317315C3345800400D87 /* HMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMViewController.m; sourceTree = "<group>"; };
 		3597317415C3345800400D87 /* HMWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWordsViewController.h; sourceTree = "<group>"; };
 		3597317515C3345800400D87 /* HMWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWordsViewController.m; sourceTree = "<group>"; };
-		3597317E15C3349F00400D87 /* HMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMAppDelegate.h; sourceTree = "<group>"; };
-		3597317F15C3349F00400D87 /* HMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMAppDelegate.m; sourceTree = "<group>"; };
 		3597318015C3349F00400D87 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = Main/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		359731A515C334E100400D87 /* PrettyBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyBytes.h; sourceTree = "<group>"; };
 		359731A615C334E100400D87 /* PrettyBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyBytes.m; sourceTree = "<group>"; };
@@ -94,6 +90,7 @@
 		4A160D181BE7BD0C00952FA3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4A33ED2B1BEE5B6B006E23B8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
@@ -167,7 +164,6 @@
 				4A160D1A1BE7C35500952FA3 /* In-App Purchases */,
 				3597315015C333FF00400D87 /* Model */,
 				3597316715C3345800400D87 /* View Controllers */,
-				3597317D15C3349F00400D87 /* Main */,
 				3573DFA215ACA1A100D37742 /* Resources */,
 				3597318315C334E100400D87 /* libs */,
 				35F6540B18292D4B004A1212 /* Images.xcassets */,
@@ -179,10 +175,10 @@
 		3573DF8C15AC9F7800D37742 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A33ED2B1BEE5B6B006E23B8 /* AppDelegate.swift */,
 				4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */,
 				3573DF8D15AC9F7800D37742 /* Hangman-Info.plist */,
 				3573DF8E15AC9F7800D37742 /* InfoPlist.strings */,
-				3573DF9115AC9F7800D37742 /* main.m */,
 				3573DF9315AC9F7800D37742 /* Hangman-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -230,15 +226,6 @@
 				4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		3597317D15C3349F00400D87 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				3597317E15C3349F00400D87 /* HMAppDelegate.h */,
-				3597317F15C3349F00400D87 /* HMAppDelegate.m */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		3597318315C334E100400D87 /* libs */ = {
@@ -384,7 +371,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3573DF9215AC9F7800D37742 /* main.m in Sources */,
 				4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */,
 				3597315B15C3340000400D87 /* HMContentController.m in Sources */,
 				3597315C15C3340000400D87 /* HMGame.m in Sources */,
@@ -392,12 +378,12 @@
 				4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */,
 				35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */,
 				3597317715C3345800400D87 /* HMSettingsViewController.m in Sources */,
+				4A33ED2C1BEE5B6B006E23B8 /* AppDelegate.swift in Sources */,
 				4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */,
 				3597317A15C3345800400D87 /* HMThemeViewController.m in Sources */,
 				3597317B15C3345800400D87 /* HMViewController.m in Sources */,
 				3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */,
 				4ADAE3E91BE7E05C00CC0C8B /* HMStoreListViewCell.swift in Sources */,
-				3597318115C3349F00400D87 /* HMAppDelegate.m in Sources */,
 				359731BD15C334E100400D87 /* PrettyBytes.m in Sources */,
 				35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */,
 				4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */,
