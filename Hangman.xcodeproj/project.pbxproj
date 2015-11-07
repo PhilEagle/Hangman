@@ -312,10 +312,10 @@
 		3573DF7815AC9F7800D37742 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = HM;
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Ray Wenderlich";
+				ORGANIZATIONNAME = PhilEagleDev;
 				TargetAttributes = {
 					3573DF8015AC9F7800D37742 = {
 						DevelopmentTeam = Q6ZDEWDEA2;
