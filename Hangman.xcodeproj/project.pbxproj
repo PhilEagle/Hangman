@@ -38,6 +38,7 @@
 		35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F95B73182AA07100E27AD3 /* JSNotifier.m */; };
 		4A160D191BE7BD0C00952FA3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A160D181BE7BD0C00952FA3 /* StoreKit.framework */; };
 		4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */; };
+		4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */; };
 		4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A411A6A1BE7A66500BE0709 /* HMWords.swift */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
@@ -92,6 +93,7 @@
 		35F95B73182AA07100E27AD3 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
 		4A160D181BE7BD0C00952FA3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		3573DF8C15AC9F7800D37742 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */,
 				3573DF8D15AC9F7800D37742 /* Hangman-Info.plist */,
 				3573DF8E15AC9F7800D37742 /* InfoPlist.strings */,
 				3573DF9115AC9F7800D37742 /* main.m */,
@@ -368,6 +371,7 @@
 				3547CCED15AE1BB800EC99D0 /* stand@2x.png in Resources */,
 				3547CD2A15AE213F00EC99D0 /* Stickman in Resources */,
 				3547CD2E15AE223F00EC99D0 /* EasyWords in Resources */,
+				4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */,
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,
 				35F6540C18292D4B004A1212 /* Images.xcassets in Resources */,
 			);
