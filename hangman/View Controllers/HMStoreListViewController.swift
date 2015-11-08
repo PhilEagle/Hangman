@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import StoreKit
 
 class HMStoreListViewController: UITableViewController {
     
     private let cellIdentifier = "Cell"
+    private lazy var priceFormatter: NSNumberFormatter = {
+        let priceFormatter = NSNumberFormatter()
+        priceFormatter.formatterBehavior = .Behavior10_4
+        priceFormatter.numberStyle = .CurrencyStyle
+        return priceFormatter
+    }()
+    
+    private var products: [IAPProduct]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +28,11 @@ class HMStoreListViewController: UITableViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneTapped:")
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .Plain, target: self, action: "restoreTapped:")
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: "reload", forControlEvents: .ValueChanged)
+        reload()
+        refreshControl?.beginRefreshing()
     }
 
     //MARK: - UITableView datasource
@@ -27,13 +41,39 @@ class HMStoreListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return products?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HMStoreListViewCell
+        
+        let product = products![indexPath.row]
+        cell.titleLabel.text = product.skProduct!.localizedTitle
+        cell.descriptionLabel.text = product.skProduct!.localizedDescription
+        priceFormatter.locale = product.skProduct!.priceLocale
+        cell.priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
+        
         return cell
     }
+    
+    func reload() {
+        products = nil
+        
+        tableView.reloadData()
+        
+        HMIAPHelper.sharedInstance.requestProductsWithCompletionHandler { [weak self] (success, products) -> () in
+            if self == nil {
+                return
+            }
+            
+            if success {
+                self!.products = products
+                self!.tableView.reloadData()
+            }
+            self!.refreshControl?.endRefreshing()
+        }
+    }
+    
     
     //MARK: - Interface
     func doneTapped(sender: UIBarButtonItem) {
