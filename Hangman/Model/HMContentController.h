@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-UIKIT_EXTERN NSString *const HMContentControllerCurrentThemeDidChangeNotification;
-UIKIT_EXTERN NSString *const HMContentControllerCurrentWordsDidChangeNotification;
-UIKIT_EXTERN NSString *const HMContentControllerHintsDidChangeNotification;
-UIKIT_EXTERN NSString *const HMContentControllerUnlockedThemesDidChangeNotification;
-UIKIT_EXTERN NSString *const HMContentControllerUnlockedWordsDidChangeNotification;
+extern NSString *const HMContentControllerCurrentThemeDidChangeNotification;
+extern NSString *const HMContentControllerCurrentWordsDidChangeNotification;
+extern NSString *const HMContentControllerHintsDidChangeNotification;
+extern NSString *const HMContentControllerUnlockedThemesDidChangeNotification;
+extern NSString *const HMContentControllerUnlockedWordsDidChangeNotification;
 
 @class HMTheme;
 @class HMWords;

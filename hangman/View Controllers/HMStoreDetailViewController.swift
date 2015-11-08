@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class HMStoreDetailViewController: UIViewController {
 
@@ -20,14 +21,51 @@ class HMStoreDetailViewController: UIViewController {
     @IBOutlet weak var resumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var product: IAPProduct!
+    private lazy var priceFormatter: NSNumberFormatter = {
+        let priceFormatter = NSNumberFormatter()
+        priceFormatter.formatterBehavior = .Behavior10_4
+        priceFormatter.numberStyle = .CurrencyStyle
+        return priceFormatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(patternImage:UIImage(named: "bg.png")!)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        statusLabel.hidden = true
+        refresh()
+    }
 
+    func refresh() {
+        title = product.skProduct!.localizedTitle
+        
+        titleLabel.text = product.skProduct!.localizedTitle
+        descriptionTextView.text = product.skProduct!.localizedDescription
+        priceFormatter.locale = product.skProduct!.priceLocale
+        priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
+        versionLabel.text = "Version 1.0"
+        
+        if product.allowedToPurchase() {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .Plain, target: self, action: "buyTapped")
+            navigationItem.rightBarButtonItem?.enabled = true
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+        
+        pauseButton.hidden = true
+        resumeButton.hidden = true
+        cancelButton.hidden = true
+        
+    }
+    
     // MARK: - CallBacks
-    func buyTapped(sender: UIButton) {
+    func buyTapped(sender: UIBarButtonItem) {
     }
     
     @IBAction func pauseTapped(sender: UIButton) {

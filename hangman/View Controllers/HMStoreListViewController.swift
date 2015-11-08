@@ -56,6 +56,22 @@ class HMStoreListViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("PushDetail", sender: indexPath)
+    }
+    
+    
+    //MARK: Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushDetail" {
+            let detailViewController = segue.destinationViewController as! HMStoreDetailViewController
+            let indexPath = sender as! NSIndexPath
+            let product = products![indexPath.row]
+            detailViewController.product = product
+        }
+    }
+    
+    
     func reload() {
         products = nil
         
@@ -80,7 +96,5 @@ class HMStoreListViewController: UITableViewController {
     }
     
     func restoreTapped(sender: UIBarButtonItem) {
-        // Testing purposes only
-        performSegueWithIdentifier("PushDetail", sender: nil)
     }
 }
