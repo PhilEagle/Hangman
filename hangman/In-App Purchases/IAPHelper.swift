@@ -19,6 +19,8 @@ class IAHelper: NSObject {
     init(products: [String: IAPProduct]) {
         self.products = products
         super.init()
+        
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     }
     
     // getting product identifier (using productsRequest callback)
@@ -38,6 +40,17 @@ class IAHelper: NSObject {
         productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
         productsRequest!.delegate = self
         productsRequest!.start()
+    }
+    
+    
+    func buyProduct(product: IAPProduct) {
+        assert(product.allowedToPurchase(), "This product isn't allowed to be purchased")
+        print("Buying \(product.productIdentifier)")
+        
+        product.purchaseInProgress = false
+        
+        let payment = SKPayment(product: product.skProduct!)
+        SKPaymentQueue.defaultQueue().addPayment(payment)
     }
 }
 
@@ -92,4 +105,83 @@ extension IAHelper: SKProductsRequestDelegate {
         }
         completionHandler = nil
     }
+
+}
+
+
+// MARK: - SKPaymentTransactionObserver
+extension IAHelper: SKPaymentTransactionObserver {
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .Purchased:
+                completeTransaction(transaction)
+            case .Failed:
+                failedTransaction(transaction)
+            case .Restored:
+                restoreTransaction(transaction)
+            // case .Deferred is not used in this app (iOS 8). This state is used for familly sharing.
+            default:
+                break
+            }
+        }
+    }
+    
+    
+    private func completeTransaction(transaction: SKPaymentTransaction) {
+        print("completeTransaction...")
+        
+        provideContentForTransaction(transaction, productIdentifier: transaction.payment.productIdentifier)
+    }
+    
+    private func restoreTransaction(transaction: SKPaymentTransaction) {
+        print("restoreTransaction...")
+        
+        provideContentForTransaction(transaction, productIdentifier: transaction.originalTransaction!.payment.productIdentifier)
+    }
+    
+    private func failedTransaction(transaction: SKPaymentTransaction) {
+        print("failedTransaction...")
+        
+        if transaction.error?.code != SKErrorPaymentCancelled {
+            print("Transaction Error: \(transaction.error?.localizedDescription)")
+        }
+        
+        let product = products[transaction.payment.productIdentifier]!
+        
+        nofityStatusForProductIdentifier(transaction.payment.productIdentifier, string: "Purchase failed")
+        product.purchaseInProgress = false
+        
+        SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+    }
+    
+    
+    private func provideContentForTransaction(transaction: SKPaymentTransaction, productIdentifier: String) {
+        provideContentForProductIdentifier(productIdentifier, notify: true)
+        SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+    }
+    
+    private func provideContentForProductIdentifier(productIdentifier: String, notify: Bool) {
+        let product = products[productIdentifier]!
+        
+        provideContentForProductIdentifier(productIdentifier)
+        if notify {
+            nofityStatusForProductIdentifier(productIdentifier, string: "Purchase complete!")
+        }
+        
+        product.purchaseInProgress = false
+    }
+    
+    // App-Dependant implementation
+    private func provideContentForProductIdentifier(productIdentifier: String) {}
+    
+    private func nofityStatusForProductIdentifier(productIdentifier: String, string: String) {
+        let product = products[productIdentifier]!
+        notifyStatusForProduct(product, string: string)
+        
+    }
+    
+    // App-Dependant implementation
+    private func notifyStatusForProduct(product: IAPProduct, string: String) {}
+    
 }
