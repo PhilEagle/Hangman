@@ -40,6 +40,7 @@
 		4A33ED2E1BEE8151006E23B8 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A33ED2D1BEE8151006E23B8 /* IAPProduct.swift */; };
 		4A33ED301BEFFF2A006E23B8 /* HMSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A33ED2F1BEFFF2A006E23B8 /* HMSettingsViewController.swift */; };
 		4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A411A6A1BE7A66500BE0709 /* HMWords.swift */; };
+		4A73FADC1BF0D2DE001EAD68 /* PESmallNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
 		4ADAE3E71BE7DD7D00CC0C8B /* HMStoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */; };
@@ -94,6 +95,7 @@
 		4A33ED2F1BEFFF2A006E23B8 /* HMSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMSettingsViewController.swift; path = "hangman/View Controllers/HMSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
+		4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PESmallNotifier.swift; path = hangman/libs/JSNotifier/PESmallNotifier.swift; sourceTree = SOURCE_ROOT; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
 		4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreDetailViewController.swift; path = "hangman/View Controllers/HMStoreDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreListViewController.swift; path = "hangman/View Controllers/HMStoreListViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -270,6 +272,7 @@
 		35F95B71182AA07100E27AD3 /* JSNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */,
 				35F95B72182AA07100E27AD3 /* JSNotifier.h */,
 				35F95B73182AA07100E27AD3 /* JSNotifier.m */,
 			);
@@ -384,6 +387,7 @@
 				4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */,
 				3597317A15C3345800400D87 /* HMThemeViewController.m in Sources */,
 				3597317B15C3345800400D87 /* HMViewController.m in Sources */,
+				4A73FADC1BF0D2DE001EAD68 /* PESmallNotifier.swift in Sources */,
 				3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */,
 				4ADAE3E91BE7E05C00CC0C8B /* HMStoreListViewCell.swift in Sources */,
 				359731BD15C334E100400D87 /* PrettyBytes.m in Sources */,
