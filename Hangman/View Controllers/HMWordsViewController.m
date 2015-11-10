@@ -7,7 +7,6 @@
 //
 
 #import "HMWordsViewController.h"
-#import "HMContentController.h"
 #import "Swift_Hangman-swift.h"
 
 @implementation HMWordsViewController {
@@ -16,7 +15,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unlockedWordsChanged:) name:HMContentControllerUnlockedWordsDidChangeNotification object:nil];
+    [self registerNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

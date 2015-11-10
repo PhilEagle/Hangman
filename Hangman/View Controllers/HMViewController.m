@@ -10,7 +10,6 @@
 #import "HMGame.h"
 #import "HMTheme.h"
 #import <AVFoundation/AVFoundation.h>
-#import "HMContentController.h"
 #import "Swift_Hangman-swift.h"
 #import "UIImage+RWExtensions.h"
 
@@ -86,9 +85,8 @@
     // Add observers
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentThemeChanged:) name:HMContentControllerCurrentThemeDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentWordsChanged:) name:HMContentControllerCurrentWordsDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hintsChanged:) name:HMContentControllerHintsDidChangeNotification object:nil];
+    
+    [self registerNotification];
     
     // Refresh view
     [self refresh];

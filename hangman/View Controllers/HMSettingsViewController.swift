@@ -18,7 +18,7 @@ class HMSettingsViewController: UITableViewController {
     }
     
     private func refresh() {
-        wordsLabel.text = HMContentController.sharedInstance().currentWords.name
-        themeLabel.text = HMContentController.sharedInstance().currentTheme.name
+        wordsLabel.text = HMContentController.sharedInstance.currentWords?.name
+        themeLabel.text = HMContentController.sharedInstance.currentTheme?.name
     }
 }

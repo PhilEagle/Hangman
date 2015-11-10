@@ -7,8 +7,8 @@
 //
 
 #import "HMThemeViewController.h"
-#import "HMContentController.h"
 #import "HMTheme.h"
+#import "Swift_Hangman-swift.h"
 
 @implementation HMThemeViewController {
     NSIndexPath * _selectedIndexPath;
@@ -16,7 +16,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unlockedThemesChanged:) name:HMContentControllerUnlockedThemesDidChangeNotification object:nil];
+    [self registerNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
