@@ -9,6 +9,7 @@
 import UIKit
 
 class PESmallNotifier: UIView {
+    
     var title: String {
         didSet {
             txtLabel.text = title
@@ -20,10 +21,8 @@ class PESmallNotifier: UIView {
         self.title = title
         self.txtLabel = UILabel()
         
-        let screenFrame = UIScreen.mainScreen().bounds
-        super.init(frame: CGRectMake(0, screenFrame.size.height, screenFrame.size.width, 40))
+        super.init(frame: CGRectZero)
         
-        txtLabel.frame = CGRectMake(8, 12, frame.size.width, 20)
         txtLabel.font = UIFont(name: "HelveticaNeue", size: 16)
         txtLabel.backgroundColor = UIColor.clearColor()
         txtLabel.textColor = UIColor.whiteColor()
@@ -34,99 +33,11 @@ class PESmallNotifier: UIView {
         txtLabel.layer.shadowRadius = 1
         txtLabel.layer.masksToBounds = false
         
+        txtLabel.text = title
+        
+        backgroundColor = UIColor(white: 0, alpha: 0.6)
+        
         addSubview(txtLabel)
-        
-        //UIApplication.sharedApplication().delegate?.window??.window?.addSubview(self)
-        
-        // ajout de la vue à la hierarchie
-        UIApplication.sharedApplication().keyWindow?.subviews[0].addSubview(self)
-
-    }
-    
-    override func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        let colorspace = CGColorSpaceCreateDeviceRGB()
-        
-        //Background color
-        let rectangle = CGRectMake(0, 4, 320, 36)
-        CGContextAddRect(context, rectangle)
-        CGContextSetFillColorWithColor(context, UIColor(red: 0, green: 0, blue: 0, alpha: 0).CGColor)
-        CGContextFillRect(context, rectangle)
-        
-        
-        //First whiteColor
-        CGContextSetLineWidth(context, 1.0)
-        let componentsWhiteLine: [CGFloat] = [1.0, 1.0, 1.0, 0.35]
-        let Whitecolor = CGColorCreate(colorspace, componentsWhiteLine)
-        CGContextSetStrokeColorWithColor(context, Whitecolor)
-        
-        CGContextMoveToPoint(context, 0, 4.5)
-        CGContextAddLineToPoint(context, 320, 4.5)
-        
-        CGContextStrokePath(context)
-        
-        
-        //First whiteColor
-        CGContextSetLineWidth(context, 1.0)
-        let componentsBlackLine: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
-        let Blackcolor = CGColorCreate(colorspace, componentsBlackLine);
-        CGContextSetStrokeColorWithColor(context, Blackcolor);
-        
-        CGContextMoveToPoint(context, 0, 3.5);
-        CGContextAddLineToPoint(context, 320, 3.5);
-        
-        CGContextStrokePath(context);
-        
-        //Draw Shadow
-        let imageBounds = CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.size.width, 3)
-        let bounds = CGRectMake(0, 0, 320, 3);
-        
-        let resolution: CGFloat = 0.5 * (bounds.size.width / imageBounds.size.width + bounds.size.height / imageBounds.size.height)
-        
-        CGContextSaveGState(context);
-        CGContextTranslateCTM(context, bounds.origin.x, bounds.origin.y);
-        CGContextScaleCTM(context, (bounds.size.width / imageBounds.size.width), (bounds.size.height / imageBounds.size.height));
-        
-        // Layer 1
-        let alignStroke: CGFloat = 0
-        let path = CGPathCreateMutable()
-        var drawRect = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 3)
-        drawRect.origin.x = (round(resolution * drawRect.origin.x + alignStroke) - alignStroke) / resolution
-        drawRect.origin.y = (round(resolution * drawRect.origin.y + alignStroke) - alignStroke) / resolution;
-        drawRect.size.width = round(resolution * drawRect.size.width) / resolution;
-        drawRect.size.height = round(resolution * drawRect.size.height) / resolution;
-        CGPathAddRect(path, nil, drawRect)
-        
-        let colors: CFArray = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0).CGColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.18).CGColor
-        ]
-        let locations: [CGFloat] = [0, 1]
-        let space = CGColorSpaceCreateDeviceRGB();
-        let gradient = CGGradientCreateWithColors(space, colors, locations)
-        
-        CGContextAddPath(context, path)
-        CGContextSaveGState(context)
-        CGContextEOClip(context)
-        transform = CGAffineTransformMakeRotation(-1.571)
-        
-        let tempPath = CGPathCreateMutable();
-        CGPathAddPath(tempPath, &transform, path);
-        let pathBounds = CGPathGetPathBoundingBox(tempPath);
-        var point = pathBounds.origin;
-        var point2 = CGPointMake(CGRectGetMaxX(pathBounds), CGRectGetMinY(pathBounds));
-        transform = CGAffineTransformInvert(transform);
-        point = CGPointApplyAffineTransform(point, transform);
-        point2 = CGPointApplyAffineTransform(point2, transform);
-
-        CGContextDrawLinearGradient(
-            context,
-            gradient,
-            point,
-            point2,
-            [.DrawsBeforeStartLocation, .DrawsAfterEndLocation])
-            
-        CGContextRestoreGState(context);
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -228,27 +139,29 @@ class PESmallNotifier: UIView {
     }
     
     func show() {
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(0.3)
-        
-        var move = frame
-        move.origin.y -= 40
-        frame = move
-        
-        UIView.commitAnimations()
+        showFor(0)
     }
     
     func showFor(seconds: NSTimeInterval) {
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(0.3)
+        // Complete view initialization based on the current main view size
+        let screenFrame = UIScreen.mainScreen().bounds
+        frame = CGRectMake(0, screenFrame.size.height, screenFrame.size.width, 40)
+        txtLabel.frame = CGRectMake(8, 12, screenFrame.size.width, 20)
+        UIApplication.sharedApplication().keyWindow?.subviews[0].addSubview(self)
         
-        var move = frame
-        move.origin.y -= 40
-        frame = move
+        UIView.animateWithDuration(0.3) {[weak self] () -> Void in
+            guard let strongSelf = self else {
+                return
+            }
         
-        UIView.commitAnimations()
-        
-        hideIn(seconds)
+            var move = strongSelf.frame
+            move.origin.y -= 40
+            strongSelf.frame = move
+            
+            if seconds > 0 {
+                strongSelf.hideIn(seconds)
+            }
+        }
     }
     
     private func hideIn(seconds: NSTimeInterval) {
@@ -257,34 +170,35 @@ class PESmallNotifier: UIView {
             dispatch_get_main_queue()) { [weak self] () -> Void in
                 
                 guard let strongSelf = self else {
+                    print("strongSelf nil!")
                     return
                 }
                 
-                UIView.beginAnimations(nil, context: nil)
-                UIView.setAnimationDuration(0.3)
-                UIView.setAnimationDelegate(strongSelf)
-                UIView.setAnimationDidStopSelector("removeFromSuperview")
-                
-                var move = strongSelf.frame
-                move.origin.y += 40
-                strongSelf.frame = move
-                
-                UIView.commitAnimations()
+                strongSelf.hide()
         }
     }
     
     private func hide() {
-        UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(0.3)
-        UIView.setAnimationDelegate(self)
-        UIView.setAnimationDidStopSelector("removeFromSuperview")
-        
-        var move = frame
-        move.origin.y += 40
-        frame = move
-        
-        UIView.commitAnimations()
+        UIView.animateWithDuration(0.3,
+            animations: { [weak self] () -> Void in
+                guard let strongSelf = self else {
+                    print("strongSelf nil!")
+                    return
+                }
+            
+                var move = strongSelf.frame
+                move.origin.y += 40
+                strongSelf.frame = move
+            
+            
+            },
+            completion: { [weak self] (success) -> Void in
+                guard let strongSelf = self else {
+                    print("strongSelf nil!")
+                    return
+                }
+                strongSelf.removeFromSuperview()
+        })
     }
-    
-    
+
 }

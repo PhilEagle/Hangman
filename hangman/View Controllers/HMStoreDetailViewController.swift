@@ -52,7 +52,7 @@ class HMStoreDetailViewController: UIViewController {
         versionLabel.text = "Version 1.0"
         
         if product.allowedToPurchase() {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .Plain, target: self, action: "buyTapped")
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .Plain, target: self, action: "buyTapped:")
             navigationItem.rightBarButtonItem?.enabled = true
         } else {
             navigationItem.rightBarButtonItem = nil
@@ -66,6 +66,8 @@ class HMStoreDetailViewController: UIViewController {
     
     // MARK: - CallBacks
     func buyTapped(sender: UIBarButtonItem) {
+        print("Buy tapped !")
+        HMIAPHelper.sharedInstance.buyProduct(product)
     }
     
     @IBAction func pauseTapped(sender: UIButton) {

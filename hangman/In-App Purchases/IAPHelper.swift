@@ -120,6 +120,8 @@ extension IAHelper: SKPaymentTransactionObserver {
                 failedTransaction(transaction)
             case .Restored:
                 restoreTransaction(transaction)
+            case .Deferred:
+                print("transaction \(transaction.payment.productIdentifier) is Deferred")
             // case .Deferred is not used in this app (iOS 8). This state is used for familly sharing.
             default:
                 break
@@ -172,16 +174,16 @@ extension IAHelper: SKPaymentTransactionObserver {
         product.purchaseInProgress = false
     }
     
-    // App-Dependant implementation
-    private func provideContentForProductIdentifier(productIdentifier: String) {}
-    
-    private func nofityStatusForProductIdentifier(productIdentifier: String, string: String) {
+    func nofityStatusForProductIdentifier(productIdentifier: String, string: String) {
         let product = products[productIdentifier]!
         notifyStatusForProduct(product, string: string)
         
     }
     
     // App-Dependant implementation
-    private func notifyStatusForProduct(product: IAPProduct, string: String) {}
+    func provideContentForProductIdentifier(productIdentifier: String) {}
+    
+    // App-Dependant implementation
+    func notifyStatusForProduct(product: IAPProduct, string: String) {}
     
 }
