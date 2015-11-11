@@ -12,7 +12,7 @@ import StoreKit
 typealias RequestProductsCompletionHandler = (Bool, [IAPProduct]?) -> ()
 
 class IAHelper: NSObject {
-    private var products: [String: IAPProduct]
+    var products: [String: IAPProduct]
     private var productsRequest: SKProductsRequest?
     private var completionHandler: RequestProductsCompletionHandler?
     

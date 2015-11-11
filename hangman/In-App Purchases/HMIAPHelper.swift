@@ -15,7 +15,14 @@ class HMIAPHelper: IAHelper {
     init() {
         let tenHints = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.tenhints")
         let hundredHints = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.hundredhints")
-        let products = [tenHints.productIdentifier: tenHints, hundredHints.productIdentifier: hundredHints]
+        let hardWords = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.hardwords")
+        let iosWords = IAPProduct(productIdentifier: "com.phileagledev.swifthangman.ioswords")
+        let products = [
+            tenHints.productIdentifier: tenHints,
+            hundredHints.productIdentifier: hundredHints,
+            hardWords.productIdentifier: hardWords,
+            iosWords.productIdentifier: iosWords
+        ]
         
         super.init(products: products)
     }
@@ -29,6 +36,12 @@ class HMIAPHelper: IAHelper {
             let curHints = HMContentController.sharedInstance.hints
             HMContentController.sharedInstance.hints = curHints + 100
         }
+        else if productIdentifier == "com.phileagledev.swifthangman.hardwords" {
+            unlockWordsForProductIdentifier(productIdentifier, directory: "HardWords")
+        }
+        else if productIdentifier == "com.phileagledev.swifthangman.ioswords" {
+            unlockWordsForProductIdentifier(productIdentifier, directory: "iOSWords")
+        }
     }
     
     override func notifyStatusForProduct(product: IAPProduct, string: String) {
@@ -41,5 +54,17 @@ class HMIAPHelper: IAHelper {
         let notify = PESmallNotifier(title: message)
         notify.showFor(2)
 
+    }
+    
+    func unlockWordsForProductIdentifier(productIdentifier: String, directory: String) {
+        let product = products[productIdentifier]
+        product!.purchase = true
+        
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: productIdentifier)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        let ressourceURL = NSBundle.mainBundle().resourceURL!
+        
+        HMContentController.sharedInstance.unlockContentWithDirURL(ressourceURL.URLByAppendingPathComponent(directory))
     }
 }
