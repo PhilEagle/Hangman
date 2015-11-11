@@ -10,6 +10,6 @@ import Foundation
 
 extension HMWordsViewController {
     func registerNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "unlockedWordsChanged", name: HMContentControllerCurrentWordsDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "unlockedWordsChanged:", name: HMContentControllerCurrentWordsDidChangeNotification, object: nil)
     }
 }

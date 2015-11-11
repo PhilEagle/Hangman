@@ -44,6 +44,8 @@
 		4A6AD8C21BF255A500DE3CDD /* EasyWords in Resources */ = {isa = PBXBuildFile; fileRef = 3547CD2B15AE223F00EC99D0 /* EasyWords */; };
 		4A6AD8C31BF255B200DE3CDD /* Stickman in Resources */ = {isa = PBXBuildFile; fileRef = 3547CD2815AE213F00EC99D0 /* Stickman */; };
 		4A73FADC1BF0D2DE001EAD68 /* PESmallNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */; };
+		4AAC3D371BF35BAB00C6C9E1 /* HardWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D351BF35BAB00C6C9E1 /* HardWords */; };
+		4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D361BF35BAB00C6C9E1 /* iOSWords */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
 		4ADAE3E71BE7DD7D00CC0C8B /* HMStoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */; };
@@ -101,6 +103,8 @@
 		4A6AD8BE1BF252B900DE3CDD /* HMWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWordsViewController.swift; sourceTree = "<group>"; };
 		4A6AD8C01BF2533900DE3CDD /* HMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMViewController.swift; sourceTree = "<group>"; };
 		4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PESmallNotifier.swift; path = hangman/libs/JSNotifier/PESmallNotifier.swift; sourceTree = SOURCE_ROOT; };
+		4AAC3D351BF35BAB00C6C9E1 /* HardWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HardWords; sourceTree = "<group>"; };
+		4AAC3D361BF35BAB00C6C9E1 /* iOSWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOSWords; sourceTree = "<group>"; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
 		4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreDetailViewController.swift; path = "hangman/View Controllers/HMStoreDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreListViewController.swift; path = "hangman/View Controllers/HMStoreListViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -196,6 +200,8 @@
 		3573DFA215ACA1A100D37742 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4AAC3D351BF35BAB00C6C9E1 /* HardWords */,
+				4AAC3D361BF35BAB00C6C9E1 /* iOSWords */,
 				3547CD2B15AE223F00EC99D0 /* EasyWords */,
 				3547CD2815AE213F00EC99D0 /* Stickman */,
 				3547CCE515AE1BB800EC99D0 /* Background */,
@@ -368,8 +374,10 @@
 				3547CCDC15AE1AB400EC99D0 /* attribution.txt in Resources */,
 				3547CCEA15AE1BB800EC99D0 /* bg.png in Resources */,
 				3547CCEB15AE1BB800EC99D0 /* bg@2x.png in Resources */,
+				4AAC3D371BF35BAB00C6C9E1 /* HardWords in Resources */,
 				3547CCEC15AE1BB800EC99D0 /* stand.png in Resources */,
 				3547CCED15AE1BB800EC99D0 /* stand@2x.png in Resources */,
+				4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */,
 				4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */,
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,
 				35F6540C18292D4B004A1212 /* Images.xcassets in Resources */,
