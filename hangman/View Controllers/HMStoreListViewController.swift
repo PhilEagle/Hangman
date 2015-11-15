@@ -19,7 +19,16 @@ class HMStoreListViewController: UITableViewController {
         return priceFormatter
     }()
     
-    private var products: [IAPProduct]?
+    private var products: [IAPProduct]? {
+        willSet {
+            self.removeObservers()
+        }
+        didSet {
+            self.addObservers()
+        }
+    }
+    
+    private var observing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +43,57 @@ class HMStoreListViewController: UITableViewController {
         reload()
         refreshControl?.beginRefreshing()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        addObservers()
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeObservers()
+    }
+    
+    //MARK: - KVO
+    private func addObservers() {
+        if observing || products == nil { return }
+        
+        observing = true
+        
+        for product in products! {
+            print("observe id: \(product.productIdentifier)")
+            product.addObserver(self, forKeyPath: "purchaseInProgress", options: [], context: nil)
+            product.addObserver(self, forKeyPath: "purchase", options: [], context: nil)
+        }
+    }
+    
+    private func removeObservers() {
+        if !observing { return }
+        
+        observing = false
 
+        for product in products! {
+            print("remove observe id: \(product.productIdentifier)")
+            product.removeObserver(self, forKeyPath: "purchaseInProgress")
+            product.removeObserver(self, forKeyPath: "purchase")
+        }
+        
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        guard let product = object as? IAPProduct else {
+            return
+        }
+        
+        let row = products?.indexOf(product)
+        let indexPath = NSIndexPath(forRow: row!, inSection: 0)
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+    }
+    
     //MARK: - UITableView datasource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -76,30 +135,34 @@ class HMStoreListViewController: UITableViewController {
         }
     }
     
-    
     func reload() {
         products = nil
-        
         tableView.reloadData()
         
         HMIAPHelper.sharedInstance.requestProductsWithCompletionHandler { [weak self] (success, products) -> () in
-            if self == nil {
+            guard let strongSelf = self else {
                 return
             }
             
             if success {
-                self!.products = products
-                self!.tableView.reloadData()
+                strongSelf.products = products
+                strongSelf.tableView.reloadData()
             }
-            self!.refreshControl?.endRefreshing()
+            strongSelf.refreshControl?.endRefreshing()
         }
     }
-    
     
     //MARK: - Interface
     func doneTapped(sender: UIBarButtonItem) {
     }
     
     func restoreTapped(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Restore Content", message: "Would you like to check for and restore any previous purchases?", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> () in
+            HMIAPHelper.sharedInstance.restoreCompletedTransactions()
+        }))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
 }

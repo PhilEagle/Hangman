@@ -14,8 +14,8 @@ class IAPProduct: NSObject {
     var availableForPurchase: Bool
     var productIdentifier: String
     var skProduct: SKProduct?
-    var purchaseInProgress: Bool
-    var purchase: Bool
+    dynamic var purchaseInProgress: Bool        // toggle KVO with dynamic keyword
+    dynamic var purchase: Bool                  // toggle KVO with dynamic keyword
     
     required init(productIdentifier: String) {
         self.availableForPurchase = false

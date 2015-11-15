@@ -40,6 +40,20 @@ class HMStoreDetailViewController: UIViewController {
         
         statusLabel.hidden = true
         refresh()
+        
+        product.addObserver(self, forKeyPath: "purchaseInProgress", options: [], context: nil)
+        product.addObserver(self, forKeyPath: "purchase", options: [], context: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        product.removeObserver(self, forKeyPath: "purchaseInProgress")
+        product.removeObserver(self, forKeyPath: "purchase")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        refresh()
     }
 
     func refresh() {
