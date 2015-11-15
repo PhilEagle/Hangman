@@ -42,16 +42,21 @@ class IAHelper: NSObject {
         productsRequest!.start()
     }
     
-    
+    // Request: buy product on AppleStore
     func buyProduct(product: IAPProduct) {
         assert(product.allowedToPurchase(), "This product isn't allowed to be purchased")
-        print("Buying \(product.productIdentifier)")
         
-        product.purchaseInProgress = false
+        product.purchaseInProgress = true
         
         let payment = SKPayment(product: product.skProduct!)
         SKPaymentQueue.defaultQueue().addPayment(payment)
     }
+    
+    // Request: Restore completed transactions
+    func restoreCompletedTransactions() {
+        SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
+    }
+    
 }
 
 // MARK: - SKProductsRequest Delegate
@@ -129,7 +134,6 @@ extension IAHelper: SKPaymentTransactionObserver {
         }
     }
     
-    
     private func completeTransaction(transaction: SKPaymentTransaction) {
         print("completeTransaction...")
         
@@ -156,7 +160,6 @@ extension IAHelper: SKPaymentTransactionObserver {
         
         SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     }
-    
     
     private func provideContentForTransaction(transaction: SKPaymentTransaction, productIdentifier: String) {
         provideContentForProductIdentifier(productIdentifier, notify: true)

@@ -25,6 +25,15 @@ class HMIAPHelper: IAHelper {
         ]
         
         super.init(products: products)
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("com.phileagledev.swifthangman.hardwords") {
+            unlockWordsForProductIdentifier("com.phileagledev.swifthangman.hardwords", directory: "HardWords")
+        }
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("com.phileagledev.swifthangman.ioswords") {
+            unlockWordsForProductIdentifier("com.phileagledev.swifthangman.ioswords", directory: "iOSWords")
+        }
+        
     }
     
     override func provideContentForProductIdentifier(productIdentifier: String) {
@@ -46,11 +55,11 @@ class HMIAPHelper: IAHelper {
     
     override func notifyStatusForProduct(product: IAPProduct, string: String) {
         guard let skProduct = product.skProduct else {
-               print("skProudct nul")
+               print("skProduct nul")
             return
         }
         
-        let message = "\(skProduct.localizedTitle): string"
+        let message = "\(skProduct.localizedTitle): \(string)"
         let notify = PESmallNotifier(title: message)
         notify.showFor(2)
 

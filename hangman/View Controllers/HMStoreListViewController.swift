@@ -51,7 +51,12 @@ class HMStoreListViewController: UITableViewController {
         cell.titleLabel.text = product.skProduct!.localizedTitle
         cell.descriptionLabel.text = product.skProduct!.localizedDescription
         priceFormatter.locale = product.skProduct!.priceLocale
-        cell.priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
+        
+        if (product.purchase) {
+            cell.priceLabel.text = "Installed"
+        } else {
+            cell.priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
+        }
         
         return cell
     }
