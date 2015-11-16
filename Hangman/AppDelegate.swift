@@ -16,22 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         HMIAPHelper.sharedInstance
-        HMReceiptValidator.sharedInstance.validateReceiptWithCompletionHandler { (inAppPurchases) -> () in
-            guard let inAppPurchases = inAppPurchases else {
-                print("inAppPurchases not a dictionary")
-                return
-            }
-            
-            for purchase in inAppPurchases {
-                let productIdentifier = purchase["ProductIdentifier"] as? String
-                if productIdentifier != "com.phileagledev.swifthangman.tenhints"
-                    && productIdentifier != "com.phileagledev.swifthangman.hundredhints"
-                    && productIdentifier != nil
-                {
-                    HMIAPHelper.sharedInstance.provideContentForProductIdentifier(productIdentifier!, notify: false)
-                }
-            }
-        }
         return true
     }
 

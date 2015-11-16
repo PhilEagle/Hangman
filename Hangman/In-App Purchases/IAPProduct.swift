@@ -13,7 +13,9 @@ class IAPProduct: NSObject {
     
     var availableForPurchase: Bool
     var productIdentifier: String
+    var info: IAPProductInfo?
     var skProduct: SKProduct?
+    
     dynamic var purchaseInProgress: Bool        // toggle KVO with dynamic keyword
     dynamic var purchase: Bool                  // toggle KVO with dynamic keyword
     
@@ -33,6 +35,10 @@ class IAPProduct: NSObject {
         }
         
         if purchaseInProgress {
+            return false
+        }
+        
+        if info == nil {
             return false
         }
         

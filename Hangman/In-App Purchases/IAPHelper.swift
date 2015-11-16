@@ -16,12 +16,42 @@ class IAHelper: NSObject {
     private var productsRequest: SKProductsRequest?
     private var completionHandler: RequestProductsCompletionHandler?
     
-    init(products: [String: IAPProduct]) {
-        self.products = products
+    override init() {
+        products = [:]
+        
         super.init()
+        
+        //create current available products from productInfos files
+        let productInfosURL = NSBundle.mainBundle().URLForResource("productInfos", withExtension: "plist")
+        let productInfosArray = NSArray(contentsOfURL: productInfosURL!)
+        for productInfos in productInfosArray! {
+            guard let productDict = productInfos as? [String: AnyObject] else {
+                continue
+            }
+            
+            let info = IAPProductInfo(dict: productDict)
+            addInfo(info, forProductIdentifier: info.productIdentifier)
+        }
         
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     }
+
+    private func addInfo(info: IAPProductInfo, forProductIdentifier productIdentifier: String) {
+        let product = addProductForProductIdentifier(productIdentifier)
+        product.info = info
+    }
+    
+    private func addProductForProductIdentifier(productIdentifier: String) -> IAPProduct {
+        var product = products[productIdentifier]
+        if product == nil {
+            product = IAPProduct(productIdentifier: productIdentifier)
+            products[productIdentifier] = product
+        }
+        
+        return product!
+    }
+    
+    
     
     // getting product identifier (using productsRequest callback)
     func requestProductsWithCompletionHandler(completion: RequestProductsCompletionHandler?) {
@@ -189,9 +219,20 @@ extension IAHelper: SKPaymentTransactionObserver {
     }
     
     func provideContentForProductIdentifier(productIdentifier: String, notify: Bool) {
-        let product = products[productIdentifier]!
+        guard let product = products[productIdentifier], info = product.info else {
+            print("Product recovery error, or info not provided")
+            return
+        }
         
-        provideContentForProductIdentifier(productIdentifier)
+        if info.consumable {
+            purchaseConsumable(info.consumableIdentifier,
+                forProductIdentifier: productIdentifier,
+                amount: info.consumableAmount)
+        } else if !info.bundleDir.isEmpty {
+            let bundleURL = NSBundle.mainBundle().resourceURL?.URLByAppendingPathComponent(info.bundleDir)
+            purchaseNonConsumableAtURL(bundleURL!, forProductIdentifier: productIdentifier)
+        }
+        
         if notify {
             nofityStatusForProductIdentifier(productIdentifier, string: "Purchase complete!")
         }
@@ -199,14 +240,25 @@ extension IAHelper: SKPaymentTransactionObserver {
         product.purchaseInProgress = false
     }
     
+    func purchaseConsumable(consumableIdentifier: String, forProductIdentifier productIdentifier: String, amount consumableAmount: Int) {
+        
+        let previousAmount = NSUserDefaults.standardUserDefaults().integerForKey(consumableIdentifier)
+        let newAmount = previousAmount + consumableAmount
+        NSUserDefaults.standardUserDefaults().setInteger(newAmount, forKey: consumableIdentifier)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func provideContentWithURL(URL: NSURL) { }
+    
+    func purchaseNonConsumableAtURL(nonLocalURL: NSURL, forProductIdentifier productIdentifier: String) {
+        provideContentWithURL(nonLocalURL)
+    }
+    
     func nofityStatusForProductIdentifier(productIdentifier: String, string: String) {
         let product = products[productIdentifier]!
         notifyStatusForProduct(product, string: string)
         
     }
-    
-    // App-Dependant implementation
-    func provideContentForProductIdentifier(productIdentifier: String) {}
     
     // App-Dependant implementation
     func notifyStatusForProduct(product: IAPProduct, string: String) {}

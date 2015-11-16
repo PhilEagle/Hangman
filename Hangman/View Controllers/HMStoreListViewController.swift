@@ -105,6 +105,7 @@ class HMStoreListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HMStoreListViewCell
         
         let product = products![indexPath.row]
+        cell.iconImageView.image = UIImage(named: product.info!.icon)
         cell.titleLabel.text = product.skProduct!.localizedTitle
         cell.descriptionLabel.text = product.skProduct!.localizedDescription
         priceFormatter.locale = product.skProduct!.priceLocale
