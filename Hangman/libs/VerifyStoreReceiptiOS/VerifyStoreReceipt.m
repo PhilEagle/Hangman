@@ -391,7 +391,10 @@ NSDictionary *dictionaryWithAppStoreReceipt(NSString *receiptPath) {
 		p += length;
         
 		// Only parse attributes we're interested in
-		if ((attr_type > ATTR_START && attr_type < ATTR_END) || attr_type == INAPP_PURCHASE || attr_type == ORIG_VERSION || attr_type == EXPIRE_DATE) {
+		
+        
+        //if ((attr_type > ATTR_START && attr_type < ATTR_END) || attr_type == INAPP_PURCHASE || attr_type == ORIG_VERSION || attr_type == EXPIRE_DATE) {
+        if (attr_type == BUNDLE_ID || attr_type == OPAQUE_VALUE || attr_type == HASH || attr_type == VERSION || attr_type == INAPP_PURCHASE || attr_type == ORIG_VERSION || attr_type == EXPIRE_DATE) {
 			NSString *key = nil;
             
 			ASN1_get_object(&p, &length, &type, &xclass, seq_end - p);
@@ -490,12 +493,31 @@ NSArray *obtainInAppPurchases(NSString *receiptPath) {
 	return purchases;
 }
 
-extern const NSString * global_bundleVersion;
-extern const NSString * global_bundleIdentifier;
+#pragma mark: - Phil Updates
+// Phil start updating *********
+
+// Added here because accessing swift global variable from objc is not possible
+// 1/Remove extern declaration
+// 2/Add plain const declaration
+
+//extern const NSString * global_bundleVersion;
+//extern const NSString * global_bundleIdentifier;
 
 // in your project define those two somewhere as such:
 // const NSString * global_bundleVersion = @"1.0.2";
 // const NSString * global_bundleIdentifier = @"com.example.SampleApp";
+
+// Need to include this to interface with VerifyStoreReceipt library
+
+//From Apple Doc: Do not use NSBundle.mainBundle().infoDictionary for security purpose.
+//Verify that the bundle identifier in the receipt matches a hard-coded constant
+//containing the CFBundleIdentifier value you expect in the Info.plist file.
+const NSString *global_bundleIdentifier = @"com.phileagledev.SwiftHangman";
+//Verify that the version identifier string in the receipt matches a hard-coded constant
+//containing the CFBundleVersion value you expect in the Info.plist file.
+const NSString *global_bundleVersion = @"1";
+
+// Phil end updating ***********
 
 BOOL verifyReceiptAtPath(NSString *receiptPath) {
 	// it turns out, it's a bad idea, to use these two NSBundle methods in your app:
@@ -509,10 +531,11 @@ BOOL verifyReceiptAtPath(NSString *receiptPath) {
     
 	NSString *bundleVersion = (NSString*)global_bundleVersion;
 	NSString *bundleIdentifier = (NSString*)global_bundleIdentifier;
-
+    
 	// avoid making stupid mistakes --> check again
-	NSCAssert([bundleVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]],
-              @"whoops! check the hard-coded CFBundleShortVersionString!");
+    // Phil: change CFBundleShortVersionString to CFBundleVersion (returned by Apple instead of CFBundleShortVersionString)
+	NSCAssert([bundleVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]],
+              @"whoops! check the hard-coded CFBundleVersion!");
 	NSCAssert([bundleIdentifier isEqualToString:[[NSBundle mainBundle] bundleIdentifier]],
               @"whoops! check the hard-coded bundle identifier!");
 	NSDictionary *receipt = dictionaryWithAppStoreReceipt(receiptPath);

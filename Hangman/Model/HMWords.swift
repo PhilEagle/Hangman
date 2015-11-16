@@ -2,8 +2,8 @@
 //  HMWords.swift
 //  Hangman
 //
-//  Created by philippe eggel on 02/11/2015.
-//  Copyright © 2015 Ray Wenderlich. All rights reserved.
+//  Created by phil on 02/11/2015.
+//  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 
 import Foundation

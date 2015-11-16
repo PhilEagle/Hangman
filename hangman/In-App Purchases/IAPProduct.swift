@@ -2,7 +2,7 @@
 //  IAAProduct.swift
 //  Swift Hangman
 //
-//  Created by philippe eggel on 07/11/2015.
+//  Created by phil on 07/11/2015.
 //  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 

@@ -2,8 +2,8 @@
 //  IAPHelper.swift
 //  Hangman
 //
-//  Created by philippe eggel on 02/11/2015.
-//  Copyright © 2015 Ray Wenderlich. All rights reserved.
+//  Created by phil on 02/11/2015.
+//  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 
 import Foundation
@@ -57,6 +57,30 @@ class IAHelper: NSObject {
         SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
     }
     
+    // Request: Validate Receipt after a transaction
+    func validateReceiptForTransaction(transaction: SKPaymentTransaction) {
+        HMReceiptValidator.sharedInstance.validateReceiptWithCompletionHandler { [weak self] (inAppPurchases) -> () in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            guard let inAppPurchases = inAppPurchases else {
+                print("inAppPurchases not a dictionary")
+                return
+            }
+            
+            for purchase in inAppPurchases {
+                let transactionID = purchase["TransactionIdentifier"] as? String
+                let originalTransactionID = purchase["OriginalTransactionIdentifier"] as? String
+                
+                if transactionID == transaction.transactionIdentifier
+                    || originalTransactionID == transaction.originalTransaction
+                {
+                    strongSelf.provideContentForTransaction(transaction, productIdentifier: transaction.payment.productIdentifier)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - SKProductsRequest Delegate
@@ -136,14 +160,12 @@ extension IAHelper: SKPaymentTransactionObserver {
     
     private func completeTransaction(transaction: SKPaymentTransaction) {
         print("completeTransaction...")
-        
-        provideContentForTransaction(transaction, productIdentifier: transaction.payment.productIdentifier)
+        validateReceiptForTransaction(transaction)
     }
     
     private func restoreTransaction(transaction: SKPaymentTransaction) {
         print("restoreTransaction...")
-        
-        provideContentForTransaction(transaction, productIdentifier: transaction.originalTransaction!.payment.productIdentifier)
+        validateReceiptForTransaction(transaction)
     }
     
     private func failedTransaction(transaction: SKPaymentTransaction) {
@@ -166,7 +188,7 @@ extension IAHelper: SKPaymentTransactionObserver {
         SKPaymentQueue.defaultQueue().finishTransaction(transaction)
     }
     
-    private func provideContentForProductIdentifier(productIdentifier: String, notify: Bool) {
+    func provideContentForProductIdentifier(productIdentifier: String, notify: Bool) {
         let product = products[productIdentifier]!
         
         provideContentForProductIdentifier(productIdentifier)

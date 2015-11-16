@@ -51,6 +51,7 @@
 		4ABEB8651BF9CA2600AFDBB9 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ABEB8621BF9CA2600AFDBB9 /* libssl.a */; };
 		4ABEB8701BF9D08700AFDBB9 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB86D1BF9D08700AFDBB9 /* AppleIncRootCertificate.cer */; };
 		4ABEB8711BF9D08700AFDBB9 /* VerifyStoreReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABEB86F1BF9D08700AFDBB9 /* VerifyStoreReceipt.m */; };
+		4ABEB8731BF9D61400AFDBB9 /* HMReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABEB8721BF9D61400AFDBB9 /* HMReceiptValidator.swift */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
 		4ADAE3E71BE7DD7D00CC0C8B /* HMStoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */; };
@@ -191,6 +192,7 @@
 		4ABEB86D1BF9D08700AFDBB9 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		4ABEB86E1BF9D08700AFDBB9 /* VerifyStoreReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyStoreReceipt.h; sourceTree = "<group>"; };
 		4ABEB86F1BF9D08700AFDBB9 /* VerifyStoreReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyStoreReceipt.m; sourceTree = "<group>"; };
+		4ABEB8721BF9D61400AFDBB9 /* HMReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMReceiptValidator.swift; path = "Hangman/In-App Purchases/HMReceiptValidator.swift"; sourceTree = SOURCE_ROOT; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
 		4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreDetailViewController.swift; path = "hangman/View Controllers/HMStoreDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreListViewController.swift; path = "hangman/View Controllers/HMStoreListViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -389,6 +391,7 @@
 				4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */,
 				4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */,
 				4A33ED2D1BEE8151006E23B8 /* IAPProduct.swift */,
+				4ABEB8721BF9D61400AFDBB9 /* HMReceiptValidator.swift */,
 			);
 			name = "In-App Purchases";
 			path = "../hangman/In-App Purchases";
@@ -604,6 +607,7 @@
 			files = (
 				4A6AD8BD1BF2518300DE3CDD /* HMThemeViewController.swift in Sources */,
 				4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */,
+				4ABEB8731BF9D61400AFDBB9 /* HMReceiptValidator.swift in Sources */,
 				3597315C15C3340000400D87 /* HMGame.m in Sources */,
 				4A6AD8BF1BF252B900DE3CDD /* HMWordsViewController.swift in Sources */,
 				4A33ED2E1BEE8151006E23B8 /* IAPProduct.swift in Sources */,

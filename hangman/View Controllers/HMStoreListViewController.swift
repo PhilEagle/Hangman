@@ -2,8 +2,8 @@
 //  HMStoreListViewController.swift
 //  Hangman
 //
-//  Created by philippe eggel on 02/11/2015.
-//  Copyright © 2015 Ray Wenderlich. All rights reserved.
+//  Created by phil on 02/11/2015.
+//  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 
 import UIKit
@@ -64,7 +64,6 @@ class HMStoreListViewController: UITableViewController {
         observing = true
         
         for product in products! {
-            print("observe id: \(product.productIdentifier)")
             product.addObserver(self, forKeyPath: "purchaseInProgress", options: [], context: nil)
             product.addObserver(self, forKeyPath: "purchase", options: [], context: nil)
         }
@@ -76,7 +75,6 @@ class HMStoreListViewController: UITableViewController {
         observing = false
 
         for product in products! {
-            print("remove observe id: \(product.productIdentifier)")
             product.removeObserver(self, forKeyPath: "purchaseInProgress")
             product.removeObserver(self, forKeyPath: "purchase")
         }

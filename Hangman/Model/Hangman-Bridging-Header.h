@@ -7,3 +7,4 @@
 #import "HMThemeViewController.h"
 #import "HMWordsViewController.h"
 
+#import "VerifyStoreReceipt.h"

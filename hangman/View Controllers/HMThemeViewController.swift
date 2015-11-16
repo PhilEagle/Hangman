@@ -2,7 +2,7 @@
 //  HMThemeViewController.swift
 //  Swift Hangman
 //
-//  Created by philippe eggel on 10/11/2015.
+//  Created by phil on 10/11/2015.
 //  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 

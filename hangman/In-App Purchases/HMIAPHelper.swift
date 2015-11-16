@@ -2,8 +2,8 @@
 //  HMIAPHelper.swift
 //  Hangman
 //
-//  Created by philippe eggel on 02/11/2015.
-//  Copyright © 2015 Ray Wenderlich. All rights reserved.
+//  Created by phil on 02/11/2015.
+//  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 
 import Foundation
@@ -26,6 +26,7 @@ class HMIAPHelper: IAHelper {
         
         super.init(products: products)
         
+        /*
         if NSUserDefaults.standardUserDefaults().boolForKey("com.phileagledev.swifthangman.hardwords") {
             unlockWordsForProductIdentifier("com.phileagledev.swifthangman.hardwords", directory: "HardWords")
         }
@@ -33,6 +34,7 @@ class HMIAPHelper: IAHelper {
         if NSUserDefaults.standardUserDefaults().boolForKey("com.phileagledev.swifthangman.ioswords") {
             unlockWordsForProductIdentifier("com.phileagledev.swifthangman.ioswords", directory: "iOSWords")
         }
+        */
         
     }
     
