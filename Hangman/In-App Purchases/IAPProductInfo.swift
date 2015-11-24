@@ -2,7 +2,7 @@
 //  IAPProductInfo.swift
 //  Swift Hangman
 //
-//  Created by philippe eggel on 16/11/2015.
+//  Created by Phil on 16/11/2015.
 //  Copyright © 2015 PhilEagleDev. All rights reserved.
 //
 

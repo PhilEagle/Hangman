@@ -17,32 +17,35 @@ class IAPProduct: NSObject {
     var skProduct: SKProduct?
     
     dynamic var purchaseInProgress: Bool        // toggle KVO with dynamic keyword
-    dynamic var purchase: Bool                  // toggle KVO with dynamic keyword
+    dynamic var purchase: IAPProductPurchase?   // toggle KVO with dynamic keyword
     
     required init(productIdentifier: String) {
         self.availableForPurchase = false
         self.productIdentifier = productIdentifier
         self.skProduct = nil
         self.purchaseInProgress = false
-        self.purchase = false
         
         super.init()
     }
     
     func allowedToPurchase() -> Bool {
+        // Available For Purchasing ?
         if !availableForPurchase {
             return false
         }
         
+        // Purchase in progress
         if purchaseInProgress {
             return false
         }
         
+        // No information about the product
         if info == nil {
             return false
         }
         
-        if purchase {
+        // Product is not a consumable and purchase is created
+        if info?.consumable != true && purchase != nil {
             return false
         }
         

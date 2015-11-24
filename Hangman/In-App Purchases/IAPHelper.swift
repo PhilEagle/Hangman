@@ -12,14 +12,20 @@ import StoreKit
 typealias RequestProductsCompletionHandler = (Bool, [IAPProduct]?) -> ()
 
 class IAHelper: NSObject {
+    private let IAPHelperPurchasePlist = "purchase.plist"
+    
     var products: [String: IAPProduct]
     private var productsRequest: SKProductsRequest?
     private var completionHandler: RequestProductsCompletionHandler?
     
     override init() {
+        print("IAHelper init")
         products = [:]
         
         super.init()
+        
+        //load current purchased in-app product
+        loadPurchases()
         
         //create current available products from productInfos files
         let productInfosURL = NSBundle.mainBundle().URLForResource("productInfos", withExtension: "plist")
@@ -36,6 +42,29 @@ class IAHelper: NSObject {
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
     }
 
+    //MARK: - Helper Method
+    private func libraryPath() -> NSURL {
+        let libraryPaths = NSFileManager.defaultManager().URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask)
+        return libraryPaths[0]
+    }
+    
+    private func purchasePath() -> String {
+        return libraryPath().URLByAppendingPathComponent(IAPHelperPurchasePlist).absoluteString
+    }
+    
+    private func addPurchase(purchase: IAPProductPurchase, forProductIdentifier productIdentifier: String) {
+        let product = addProductForProductIdentifier(productIdentifier)
+        product.purchase = purchase
+    }
+    
+    private func purchaseForProductIdentifier(productIdentifier: String) -> IAPProductPurchase? {
+        if let product = products[productIdentifier] {
+            return product.purchase
+        } else {
+            return nil
+        }
+    }
+    
     private func addInfo(info: IAPProductInfo, forProductIdentifier productIdentifier: String) {
         let product = addProductForProductIdentifier(productIdentifier)
         product.info = info
@@ -51,8 +80,7 @@ class IAHelper: NSObject {
         return product!
     }
     
-    
-    
+    //MARK: - In-App Purchase product management
     // getting product identifier (using productsRequest callback)
     func requestProductsWithCompletionHandler(completion: RequestProductsCompletionHandler?) {
         
@@ -89,6 +117,7 @@ class IAHelper: NSObject {
     
     // Request: Validate Receipt after a transaction
     func validateReceiptForTransaction(transaction: SKPaymentTransaction) {
+        print("validateReceiptForTransaction()...")
         HMReceiptValidator.sharedInstance.validateReceiptWithCompletionHandler { [weak self] (inAppPurchases) -> () in
             guard let strongSelf = self else {
                 return
@@ -104,11 +133,45 @@ class IAHelper: NSObject {
                 let originalTransactionID = purchase["OriginalTransactionIdentifier"] as? String
                 
                 if transactionID == transaction.transactionIdentifier
-                    || originalTransactionID == transaction.originalTransaction
+                    || (originalTransactionID != nil && originalTransactionID == transaction.originalTransaction?.transactionIdentifier)
                 {
                     strongSelf.provideContentForTransaction(transaction, productIdentifier: transaction.payment.productIdentifier)
                 }
             }
+        }
+    }
+    
+    // MARK: - Load/Save locally current purchased products
+    private func loadPurchases() {
+        print("loadPurchases()")
+        
+        guard let purchasesArray = NSKeyedUnarchiver.unarchiveObjectWithFile(purchasePath()) as? [IAPProductPurchase] else {
+            return
+        }
+        
+        for purchase in purchasesArray {
+            if purchase.libraryRelativePath != nil {
+                let localURL = libraryPath().URLByAppendingPathComponent(purchase.libraryRelativePath!, isDirectory: true)
+                provideContentWithURL(localURL)
+            }
+            
+            addPurchase(purchase, forProductIdentifier: purchase.productIdentifier)
+            print("Loaded purchase for \(purchase.productIdentifier) \(purchase.contentVersion)")
+        }
+    }
+    
+    private func savePurchases() {
+        var purchasesArray = [IAPProductPurchase]()
+        for product in products.values {
+            if product.purchase != nil {
+                purchasesArray.append(product.purchase!)
+            }
+        }
+        
+        let success = NSKeyedArchiver.archiveRootObject(purchasesArray, toFile: purchasePath())
+        
+        if !success {
+            print("Failed to save purchases to \(purchasePath())")
         }
     }
 }
@@ -164,9 +227,7 @@ extension IAHelper: SKProductsRequestDelegate {
         }
         completionHandler = nil
     }
-
 }
-
 
 // MARK: - SKPaymentTransactionObserver
 extension IAHelper: SKPaymentTransactionObserver {
@@ -189,7 +250,7 @@ extension IAHelper: SKPaymentTransactionObserver {
     }
     
     private func completeTransaction(transaction: SKPaymentTransaction) {
-        print("completeTransaction...")
+        print("completeTransaction... id:\(transaction.transactionIdentifier! ?? "") originalId:\(transaction.originalTransaction?.transactionIdentifier! ?? "") date:\(transaction.transactionDate! ?? "") originalDate:\(transaction.originalTransaction?.transactionDate! ?? "")")
         validateReceiptForTransaction(transaction)
     }
     
@@ -246,12 +307,82 @@ extension IAHelper: SKPaymentTransactionObserver {
         let newAmount = previousAmount + consumableAmount
         NSUserDefaults.standardUserDefaults().setInteger(newAmount, forKey: consumableIdentifier)
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        //creating or updating the IAPProductPurchase
+        if let previousPurchase = purchaseForProductIdentifier(productIdentifier) {
+            previousPurchase.timesPurchased++
+        } else {
+            let newPurchase = IAPProductPurchase(productIdentifier: productIdentifier, consumable: true, timesPurchased: 1, libraryRelativePath: "", contentVersion: "")
+            addPurchase(newPurchase, forProductIdentifier: productIdentifier)
+        }
+        savePurchases()
     }
     
     func provideContentWithURL(URL: NSURL) { }
     
     func purchaseNonConsumableAtURL(nonLocalURL: NSURL, forProductIdentifier productIdentifier: String) {
-        provideContentWithURL(nonLocalURL)
+        
+        var exists = false
+        var isDirectory: ObjCBool = false
+        
+        //creating a local directory URL
+        let libraryRelativePath = nonLocalURL.lastPathComponent!
+        let localURL = libraryPath().URLByAppendingPathComponent(libraryRelativePath, isDirectory: true)
+        exists = NSFileManager.defaultManager().fileExistsAtPath(localURL.absoluteString, isDirectory: &isDirectory)
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(nonLocalURL.absoluteString, isDirectory: &isDirectory) {
+            print("iosWords non found")
+        }
+        
+        print("\(localURL.absoluteString)")
+        
+        //deleting directory if it already exists
+        if exists {
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(localURL)
+                print("Remove old directory at \(localURL)")
+            } catch let error as NSError {
+                print("Couldn't delete directory at \(localURL): \(error.localizedDescription)")
+            }
+        }
+        
+        //copying directory to the library location
+        do {
+            try NSFileManager.defaultManager().copyItemAtURL(nonLocalURL, toURL: localURL)
+            print("Copying directory from \(nonLocalURL) to \(localURL)")
+        } catch let error as NSError {
+            print("Failed to copy directory \(error.localizedDescription)")
+            nofityStatusForProductIdentifier(productIdentifier, string: "Copying failed.")
+            return
+        }
+        
+        //unlocking content
+        provideContentWithURL(localURL)
+        
+        let contentVersion = ""
+        if let previousPurchase = purchaseForProductIdentifier(productIdentifier) {
+            //updating the purchase
+            previousPurchase.timesPurchased++
+            
+            let oldURL = libraryPath().URLByAppendingPathComponent(previousPurchase.libraryRelativePath!)
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(oldURL)
+                print("Remove old purchase at \(oldURL)")
+            } catch let error as NSError {
+                print("Could not remove the old purchase at \(oldURL): \(error.localizedDescription)")
+            }
+            
+            previousPurchase.libraryRelativePath = libraryRelativePath
+            previousPurchase.contentVersion = contentVersion
+        } else {
+            //creating the purchase
+            let purchase = IAPProductPurchase(productIdentifier: productIdentifier, consumable: false, timesPurchased: 1, libraryRelativePath: libraryRelativePath, contentVersion: contentVersion)
+            addPurchase(purchase, forProductIdentifier: productIdentifier)
+        }
+        
+        nofityStatusForProductIdentifier(productIdentifier, string: "Purchase Complete!")
+        
+        savePurchases()
     }
     
     func nofityStatusForProductIdentifier(productIdentifier: String, string: String) {
@@ -262,5 +393,4 @@ extension IAHelper: SKPaymentTransactionObserver {
     
     // App-Dependant implementation
     func notifyStatusForProduct(product: IAPProduct, string: String) {}
-    
 }

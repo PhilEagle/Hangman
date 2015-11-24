@@ -38,7 +38,7 @@
 		<key>consumable</key>
 		<true/>
 		<key>consumableIdentifier</key>
-		<string>com.razeware.hangman.hints</string>
+		<string>com.phileagledev.swifthangman.hints</string>
 		<key>consumableAmount</key>
 		<integer>10</integer>
 		<key>bundleDir</key>
@@ -52,7 +52,7 @@
 		<key>consumable</key>
 		<true/>
 		<key>consumableIdentifier</key>
-		<string>com.razeware.hangman.hints</string>
+		<string>com.phileagledev.swifthangman.hints</string>
 		<key>consumableAmount</key>
 		<integer>100</integer>
 		<key>bundleDir</key>
