@@ -43,7 +43,7 @@ class IAPHelper: NSObject {
     }
     
     private func purchasePath() -> String {
-        return libraryPath().URLByAppendingPathComponent(IAPHelperConstant.IAPHelperPurchasePlist).absoluteString
+        return libraryPath().URLByAppendingPathComponent(IAPHelperConstant.IAPHelperPurchasePlist).path!
     }
     
     private func addPurchase(purchase: IAPProductPurchase, forProductIdentifier productIdentifier: String) {
@@ -111,12 +111,12 @@ class IAPHelper: NSObject {
                     completionHandler(true, nil)
                     
                 } catch let error as NSError {
-                    print("Parse \(productURL!.absoluteString) error: \(error.localizedDescription)")
+                    print("Parse \(productURL!.path!) error: \(error.localizedDescription)")
                     completionHandler(false, error)
                 }
                 
             } else {
-                print("Load \(productURL!.absoluteString) error: \(error?.localizedDescription)")
+                print("Load \(productURL!.path!) error: \(error?.localizedDescription)")
                 completionHandler(false, error)
             }
         }).resume()
@@ -219,8 +219,9 @@ class IAPHelper: NSObject {
             }
         }
         
+        print("path: \(purchasePath())")
         let success = NSKeyedArchiver.archiveRootObject(purchasesArray, toFile: purchasePath())
-        
+
         if !success {
             print("Failed to save purchases to \(purchasePath())")
         }
@@ -379,19 +380,16 @@ extension IAPHelper: SKPaymentTransactionObserver {
         //creating a local directory URL
         let libraryRelativePath = nonLocalURL.lastPathComponent!
         let localURL = libraryPath().URLByAppendingPathComponent(libraryRelativePath, isDirectory: true)
-        exists = NSFileManager.defaultManager().fileExistsAtPath(localURL.absoluteString, isDirectory: &isDirectory)
+        exists = NSFileManager.defaultManager().fileExistsAtPath(localURL.path!, isDirectory: &isDirectory)
         
-        if NSFileManager.defaultManager().fileExistsAtPath(nonLocalURL.absoluteString, isDirectory: &isDirectory) {
+        if NSFileManager.defaultManager().fileExistsAtPath(nonLocalURL.path!, isDirectory: &isDirectory) {
             print("iosWords non found")
         }
-        
-        print("\(localURL.absoluteString)")
         
         //deleting directory if it already exists
         if exists {
             do {
                 try NSFileManager.defaultManager().removeItemAtURL(localURL)
-                print("Remove old directory at \(localURL)")
             } catch let error as NSError {
                 print("Couldn't delete directory at \(localURL): \(error.localizedDescription)")
             }
@@ -400,7 +398,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
         //copying directory to the library location
         do {
             try NSFileManager.defaultManager().copyItemAtURL(nonLocalURL, toURL: localURL)
-            print("Copying directory from \(nonLocalURL) to \(localURL)")
         } catch let error as NSError {
             print("Failed to copy directory \(error.localizedDescription)")
             nofityStatusForProductIdentifier(productIdentifier, string: "Copying failed.")
@@ -418,7 +415,6 @@ extension IAPHelper: SKPaymentTransactionObserver {
             let oldURL = libraryPath().URLByAppendingPathComponent(previousPurchase.libraryRelativePath!)
             do {
                 try NSFileManager.defaultManager().removeItemAtURL(oldURL)
-                print("Remove old purchase at \(oldURL)")
             } catch let error as NSError {
                 print("Could not remove the old purchase at \(oldURL): \(error.localizedDescription)")
             }
