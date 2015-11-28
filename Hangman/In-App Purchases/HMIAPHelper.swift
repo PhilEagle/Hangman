@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HMIAPHelper: IAHelper {
+class HMIAPHelper: IAPHelper {
     
     static let sharedInstance = HMIAPHelper()
     

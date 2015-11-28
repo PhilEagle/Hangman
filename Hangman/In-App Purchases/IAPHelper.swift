@@ -11,12 +11,19 @@ import StoreKit
 
 typealias RequestProductsCompletionHandler = (Bool, [IAPProduct]?) -> ()
 
-class IAHelper: NSObject {
-    private let IAPHelperPurchasePlist = "purchase.plist"
-    
+struct IAPHelperConstant {
+    static let IAPServerBaseURL = "http://www.phileagledev.com"
+    static let IAPServerProductURL = "hangman/IAPInfo/productInfos.plist"
+    static let IAPHelperPurchasePlist = "purchase.plist"
+}
+
+class IAPHelper: NSObject {
     var products: [String: IAPProduct]
     private var productsRequest: SKProductsRequest?
     private var completionHandler: RequestProductsCompletionHandler?
+    
+    // flags
+    private var productsLoadedFlag = false
     
     override init() {
         print("IAHelper init")
@@ -26,20 +33,7 @@ class IAHelper: NSObject {
         
         //load current purchased in-app product
         loadPurchases()
-        
-        //create current available products from productInfos files
-        let productInfosURL = NSBundle.mainBundle().URLForResource("productInfos", withExtension: "plist")
-        let productInfosArray = NSArray(contentsOfURL: productInfosURL!)
-        for productInfos in productInfosArray! {
-            guard let productDict = productInfos as? [String: AnyObject] else {
-                continue
-            }
-            
-            let info = IAPProductInfo(dict: productDict)
-            addInfo(info, forProductIdentifier: info.productIdentifier)
-        }
-        
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        loadProductsWithCompletionHandler {(success, error) -> () in}
     }
 
     //MARK: - Helper Method
@@ -49,7 +43,7 @@ class IAHelper: NSObject {
     }
     
     private func purchasePath() -> String {
-        return libraryPath().URLByAppendingPathComponent(IAPHelperPurchasePlist).absoluteString
+        return libraryPath().URLByAppendingPathComponent(IAPHelperConstant.IAPHelperPurchasePlist).absoluteString
     }
     
     private func addPurchase(purchase: IAPProductPurchase, forProductIdentifier productIdentifier: String) {
@@ -81,23 +75,80 @@ class IAHelper: NSObject {
     }
     
     //MARK: - In-App Purchase product management
+    // load package
+    func loadProductsWithCompletionHandler(completionHandler: (Bool, NSError?) -> ()) {
+        
+        // preparing products
+        for product in products.values {
+            product.info = nil
+            product.availableForPurchase = false
+        }
+        
+        // NSURL session configuration
+        let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        let baseURL = NSURL(string: IAPHelperConstant.IAPServerBaseURL)
+        let productURL = NSURL(string: IAPHelperConstant.IAPServerProductURL, relativeToURL: baseURL!)
+        
+        session.dataTaskWithURL(productURL!, completionHandler: { [weak self] (data, response, error) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if error == nil {
+                do {
+                    let productsInfosArray = try NSPropertyListSerialization.propertyListWithData(data!, options: .Immutable, format: nil) as! [[String: AnyObject]]
+                    for productInfosDict in productsInfosArray {
+                        let info = IAPProductInfo(dict: productInfosDict)
+                        strongSelf.addInfo(info, forProductIdentifier: info.productIdentifier)
+                    }
+                    
+                    if !strongSelf.productsLoadedFlag {
+                        strongSelf.productsLoadedFlag = true
+                        SKPaymentQueue.defaultQueue().addTransactionObserver(strongSelf)
+                    }
+                    
+                    completionHandler(true, nil)
+                    
+                } catch let error as NSError {
+                    print("Parse \(productURL!.absoluteString) error: \(error.localizedDescription)")
+                    completionHandler(false, error)
+                }
+                
+            } else {
+                print("Load \(productURL!.absoluteString) error: \(error?.localizedDescription)")
+                completionHandler(false, error)
+            }
+        }).resume()
+        
+    }
+    
     // getting product identifier (using productsRequest callback)
     func requestProductsWithCompletionHandler(completion: RequestProductsCompletionHandler?) {
         
         //1 storing the completion block
         completionHandler = completion
-        
+    
         //2 Creating the pool of identifiers
-        var productIdentifiers = Set<String>()
-        for product in products.values {
-            product.availableForPurchase = false
-            productIdentifiers.insert(product.productIdentifier)
+        loadProductsWithCompletionHandler { [weak self] (success, error) -> () in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            var productIdentifiers = Set<String>()
+            for product in strongSelf.products.values {
+                if product.info != nil {
+                    product.availableForPurchase = false
+                    productIdentifiers.insert(product.productIdentifier)
+                }
+            }
+            
+            //3 Requesting in-app products
+            strongSelf.productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+            strongSelf.productsRequest?.delegate = strongSelf
+            strongSelf.productsRequest?.start()
         }
         
-        //3 Requesting in-app products
-        productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-        productsRequest!.delegate = self
-        productsRequest!.start()
     }
     
     // Request: buy product on AppleStore
@@ -177,7 +228,7 @@ class IAHelper: NSObject {
 }
 
 // MARK: - SKProductsRequest Delegate
-extension IAHelper: SKProductsRequestDelegate {
+extension IAPHelper: SKProductsRequestDelegate {
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         print("Loaded list of products...")
         productsRequest = nil
@@ -230,7 +281,7 @@ extension IAHelper: SKProductsRequestDelegate {
 }
 
 // MARK: - SKPaymentTransactionObserver
-extension IAHelper: SKPaymentTransactionObserver {
+extension IAPHelper: SKPaymentTransactionObserver {
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {

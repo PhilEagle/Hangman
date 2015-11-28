@@ -105,7 +105,19 @@ class HMStoreListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HMStoreListViewCell
         
         let product = products![indexPath.row]
-        cell.iconImageView.image = UIImage(named: product.info!.icon)
+        cell.iconImageView.image = UIImage(named: "icon_placeholder.png")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            let url = NSURL(string: product.info!.icon)
+            let data = NSData(contentsOfURL: url!)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                guard let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? HMStoreListViewCell, let data = data else {
+                    return
+                }
+                
+                cellToUpdate.iconImageView.image = UIImage(data: data)
+            })
+        }
+        
         cell.titleLabel.text = product.skProduct!.localizedTitle
         cell.descriptionLabel.text = product.skProduct!.localizedDescription
         priceFormatter.locale = product.skProduct!.priceLocale

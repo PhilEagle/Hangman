@@ -53,11 +53,6 @@
 		4ABEB8701BF9D08700AFDBB9 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB86D1BF9D08700AFDBB9 /* AppleIncRootCertificate.cer */; };
 		4ABEB8711BF9D08700AFDBB9 /* VerifyStoreReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABEB86F1BF9D08700AFDBB9 /* VerifyStoreReceipt.m */; };
 		4ABEB8731BF9D61400AFDBB9 /* HMReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABEB8721BF9D61400AFDBB9 /* HMReceiptValidator.swift */; };
-		4ABEB87D1BFA1AA700AFDBB9 /* icon_100hints.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB8781BFA1AA700AFDBB9 /* icon_100hints.png */; };
-		4ABEB87E1BFA1AA700AFDBB9 /* icon_10hints.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB8791BFA1AA700AFDBB9 /* icon_10hints.png */; };
-		4ABEB87F1BFA1AA700AFDBB9 /* icon_hardwords.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB87A1BFA1AA700AFDBB9 /* icon_hardwords.png */; };
-		4ABEB8801BFA1AA700AFDBB9 /* icon_iOSwords.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB87B1BFA1AA700AFDBB9 /* icon_iOSwords.png */; };
-		4ABEB8811BFA1AA700AFDBB9 /* productInfos.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB87C1BFA1AA700AFDBB9 /* productInfos.plist */; };
 		4ABEB8831BFA1CEA00AFDBB9 /* IAPProductInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABEB8821BFA1CEA00AFDBB9 /* IAPProductInfo.swift */; };
 		4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */; };
 		4ADAE3E51BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */; };
@@ -201,11 +196,6 @@
 		4ABEB86E1BF9D08700AFDBB9 /* VerifyStoreReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyStoreReceipt.h; sourceTree = "<group>"; };
 		4ABEB86F1BF9D08700AFDBB9 /* VerifyStoreReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyStoreReceipt.m; sourceTree = "<group>"; };
 		4ABEB8721BF9D61400AFDBB9 /* HMReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMReceiptValidator.swift; path = "Hangman/In-App Purchases/HMReceiptValidator.swift"; sourceTree = SOURCE_ROOT; };
-		4ABEB8781BFA1AA700AFDBB9 /* icon_100hints.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_100hints.png; sourceTree = "<group>"; };
-		4ABEB8791BFA1AA700AFDBB9 /* icon_10hints.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_10hints.png; sourceTree = "<group>"; };
-		4ABEB87A1BFA1AA700AFDBB9 /* icon_hardwords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_hardwords.png; sourceTree = "<group>"; };
-		4ABEB87B1BFA1AA700AFDBB9 /* icon_iOSwords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_iOSwords.png; sourceTree = "<group>"; };
-		4ABEB87C1BFA1AA700AFDBB9 /* productInfos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = productInfos.plist; sourceTree = "<group>"; };
 		4ABEB8821BFA1CEA00AFDBB9 /* IAPProductInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IAPProductInfo.swift; path = "Hangman/In-App Purchases/IAPProductInfo.swift"; sourceTree = SOURCE_ROOT; };
 		4ADAE3E11BE7D82C00CC0C8B /* HMIAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMIAPHelper.swift; sourceTree = "<group>"; };
 		4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMStoreDetailViewController.swift; path = "hangman/View Controllers/HMStoreDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -304,7 +294,6 @@
 		3573DFA215ACA1A100D37742 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4ABEB8771BFA1AA700AFDBB9 /* IAPInfo */,
 				4AAC3D351BF35BAB00C6C9E1 /* HardWords */,
 				4AAC3D361BF35BAB00C6C9E1 /* iOSWords */,
 				3547CD2B15AE223F00EC99D0 /* EasyWords */,
@@ -533,18 +522,6 @@
 			path = VerifyStoreReceiptiOS;
 			sourceTree = "<group>";
 		};
-		4ABEB8771BFA1AA700AFDBB9 /* IAPInfo */ = {
-			isa = PBXGroup;
-			children = (
-				4ABEB8781BFA1AA700AFDBB9 /* icon_100hints.png */,
-				4ABEB8791BFA1AA700AFDBB9 /* icon_10hints.png */,
-				4ABEB87A1BFA1AA700AFDBB9 /* icon_hardwords.png */,
-				4ABEB87B1BFA1AA700AFDBB9 /* icon_iOSwords.png */,
-				4ABEB87C1BFA1AA700AFDBB9 /* productInfos.plist */,
-			);
-			path = IAPInfo;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -618,16 +595,11 @@
 				3547CCEB15AE1BB800EC99D0 /* bg@2x.png in Resources */,
 				4AAC3D371BF35BAB00C6C9E1 /* HardWords in Resources */,
 				3547CCEC15AE1BB800EC99D0 /* stand.png in Resources */,
-				4ABEB8801BFA1AA700AFDBB9 /* icon_iOSwords.png in Resources */,
-				4ABEB87E1BFA1AA700AFDBB9 /* icon_10hints.png in Resources */,
 				4ABEB8631BF9CA2600AFDBB9 /* LICENSE in Resources */,
 				3547CCED15AE1BB800EC99D0 /* stand@2x.png in Resources */,
 				4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */,
 				4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */,
-				4ABEB8811BFA1AA700AFDBB9 /* productInfos.plist in Resources */,
-				4ABEB87F1BFA1AA700AFDBB9 /* icon_hardwords.png in Resources */,
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,
-				4ABEB87D1BFA1AA700AFDBB9 /* icon_100hints.png in Resources */,
 				35F6540C18292D4B004A1212 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
