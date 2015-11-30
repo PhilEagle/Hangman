@@ -36,7 +36,8 @@ class IAPHelper: NSObject {
         loadProductsWithCompletionHandler {(success, error) -> () in}
     }
 
-    //MARK: - Helper Method
+    
+    //MARK: - Helper Methods
     private func libraryPath() -> NSURL {
         let libraryPaths = NSFileManager.defaultManager().URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask)
         return libraryPaths[0]
@@ -73,6 +74,7 @@ class IAPHelper: NSObject {
         
         return product!
     }
+    
     
     //MARK: - In-App Purchase product management
     // load package
@@ -192,6 +194,7 @@ class IAPHelper: NSObject {
         }
     }
     
+    
     // MARK: - Load/Save locally current purchased products
     private func loadPurchases() {
         print("loadPurchases()")
@@ -227,6 +230,7 @@ class IAPHelper: NSObject {
         }
     }
 }
+
 
 // MARK: - SKProductsRequest Delegate
 extension IAPHelper: SKProductsRequestDelegate {
@@ -281,6 +285,7 @@ extension IAPHelper: SKProductsRequestDelegate {
     }
 }
 
+
 // MARK: - SKPaymentTransactionObserver
 extension IAPHelper: SKPaymentTransactionObserver {
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -298,6 +303,52 @@ extension IAPHelper: SKPaymentTransactionObserver {
             default:
                 break
             }
+        }
+    }
+    
+    func paymentQueue(queue: SKPaymentQueue, updatedDownloads downloads: [SKDownload]) {
+        //1 pull out bunch of infos
+        guard let download = downloads.first else {
+            print("Unabled to recover download!")
+            return
+        }
+        let transaction = download.transaction
+        let payment = transaction.payment
+        let productIdentifier = payment.productIdentifier
+        guard let product = products[productIdentifier] else {
+            print("Unabled to recover product \(productIdentifier)")
+            return
+        }
+        
+        //2 start track progress
+        product.progress = download.progress
+        
+        //3 use downloadState
+        print("Download state: \(download.downloadState)")
+        switch download.downloadState {
+        case .Finished:
+            guard let contentURL = download.contentURL else {
+                print("Unabled to recover local location.")
+                return
+            }
+            purchaseNonConsumableAtURL(contentURL, forProductIdentifier: productIdentifier)
+            product.purchaseInProgress = false
+            SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+        
+        case .Failed:
+            print("Download failed.")
+            nofityStatusForProductIdentifier(productIdentifier, string: "Download failed.")
+            product.purchaseInProgress = false
+            SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+        
+        case .Cancelled:
+            print("Download cancelled.")
+            nofityStatusForProductIdentifier(productIdentifier, string: "Download cancelled.")
+            product.purchaseInProgress = false
+            SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+        
+        default:
+            print("Download for \(productIdentifier): \(String(format: "%0.2f", product.progress)) complete")
         }
     }
     
@@ -327,8 +378,25 @@ extension IAPHelper: SKPaymentTransactionObserver {
     }
     
     private func provideContentForTransaction(transaction: SKPaymentTransaction, productIdentifier: String) {
-        provideContentForProductIdentifier(productIdentifier, notify: true)
-        SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+        guard let product = products[productIdentifier] else {
+            print("Unabled to recover this product!")
+            return
+        }
+        
+        let downloads = transaction.downloads
+        if !downloads.isEmpty {
+            //download remote package from apple server
+            product.skDownload = downloads.first
+            if downloads.count > 1 {
+                //should be only one package
+                print("Unexpected number of downloads!")
+            }
+            SKPaymentQueue.defaultQueue().startDownloads(downloads)
+        } else {
+            //no remote package provided
+            provideContentForProductIdentifier(productIdentifier, notify: true)
+            SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+        }
     }
     
     func provideContentForProductIdentifier(productIdentifier: String, notify: Bool) {
@@ -374,24 +442,28 @@ extension IAPHelper: SKPaymentTransactionObserver {
     
     func purchaseNonConsumableAtURL(nonLocalURL: NSURL, forProductIdentifier productIdentifier: String) {
         
-        var exists = false
         var isDirectory: ObjCBool = false
         
         //creating a local directory URL
-        let libraryRelativePath = nonLocalURL.lastPathComponent!
-        let localURL = libraryPath().URLByAppendingPathComponent(libraryRelativePath, isDirectory: true)
-        exists = NSFileManager.defaultManager().fileExistsAtPath(localURL.path!, isDirectory: &isDirectory)
+        //Relative Path
+        var libraryRelativePath = nonLocalURL.lastPathComponent!
         
-        if NSFileManager.defaultManager().fileExistsAtPath(nonLocalURL.path!, isDirectory: &isDirectory) {
-            print("iosWords non found")
+        //Local URL: library + relative
+        var localURL = libraryPath().URLByAppendingPathComponent(libraryRelativePath, isDirectory: true)
+
+        //check oif nonLocalURL exist
+        if !NSFileManager.defaultManager().fileExistsAtPath(nonLocalURL.path!, isDirectory: &isDirectory) {
+            print("Directory doesn't exist at \(nonLocalURL.path!). Unabled to continue.")
+            nofityStatusForProductIdentifier(productIdentifier, string: "Copying failed.")
+            return
         }
         
         //deleting directory if it already exists
-        if exists {
+        if NSFileManager.defaultManager().fileExistsAtPath(localURL.path!, isDirectory: &isDirectory) {
             do {
                 try NSFileManager.defaultManager().removeItemAtURL(localURL)
             } catch let error as NSError {
-                print("Couldn't delete directory at \(localURL): \(error.localizedDescription)")
+                print("Unabled to delete directory at \(localURL): \(error.localizedDescription)")
             }
         }
         
@@ -404,10 +476,33 @@ extension IAPHelper: SKPaymentTransactionObserver {
             return
         }
         
+        
+        //check if contents was remotely downloaded from Apple Server (ContentInfo.plist)
+        var contentVersion = ""
+        let contentInfoURL = localURL.URLByAppendingPathComponent("ContentInfo.plist")
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(contentInfoURL.path!, isDirectory: &isDirectory) {
+            guard let info = NSDictionary(contentsOfURL: contentInfoURL), version = info["ContentVersion"] as? String else {
+                print("Failed to recover ContentInfo.plist")
+                nofityStatusForProductIdentifier(productIdentifier, string: "Recover remote infos failed.")
+                return
+            }
+            
+            contentVersion = version
+            let contentPath = NSString(string: libraryRelativePath).stringByAppendingPathComponent("Contents") as String
+            let fullContentsURL = libraryPath().URLByAppendingPathComponent(contentPath)
+            
+            if NSFileManager.defaultManager().fileExistsAtPath(fullContentsURL.path!) {
+                libraryRelativePath = contentPath
+                localURL = libraryPath().URLByAppendingPathComponent(libraryRelativePath, isDirectory: true)
+            }
+        }
+        
+        
         //unlocking content
         provideContentWithURL(localURL)
         
-        let contentVersion = ""
+        
         if let previousPurchase = purchaseForProductIdentifier(productIdentifier) {
             //updating the purchase
             previousPurchase.timesPurchased++
