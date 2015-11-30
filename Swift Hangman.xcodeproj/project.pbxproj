@@ -23,13 +23,12 @@
 		3597317B15C3345800400D87 /* HMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317315C3345800400D87 /* HMViewController.m */; };
 		3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3597317515C3345800400D87 /* HMWordsViewController.m */; };
 		3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3597318015C3349F00400D87 /* MainStoryboard.storyboard */; };
-		359731BD15C334E100400D87 /* PrettyBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731A615C334E100400D87 /* PrettyBytes.m */; };
 		359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 359731AC15C334E100400D87 /* UIImage+RWExtensions.m */; };
 		359731EE15C3363700400D87 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 359731ED15C3363700400D87 /* QuartzCore.framework */; };
 		35F6540C18292D4B004A1212 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F6540B18292D4B004A1212 /* Images.xcassets */; };
 		35F6541118292F7C004A1212 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35F6540E18292F7C004A1212 /* ProgressHUD.bundle */; };
 		35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F6541018292F7C004A1212 /* ProgressHUD.m */; };
-		35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F95B73182AA07100E27AD3 /* JSNotifier.m */; };
+		4A041EFE1C0C91DE0022D999 /* PrettyBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A041EFD1C0C91DE0022D999 /* PrettyBytes.swift */; };
 		4A160D191BE7BD0C00952FA3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A160D181BE7BD0C00952FA3 /* StoreKit.framework */; };
 		4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */; };
 		4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */; };
@@ -137,8 +136,6 @@
 		3597317415C3345800400D87 /* HMWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMWordsViewController.h; sourceTree = "<group>"; };
 		3597317515C3345800400D87 /* HMWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMWordsViewController.m; sourceTree = "<group>"; };
 		3597318015C3349F00400D87 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = Main/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		359731A515C334E100400D87 /* PrettyBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyBytes.h; sourceTree = "<group>"; };
-		359731A615C334E100400D87 /* PrettyBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyBytes.m; sourceTree = "<group>"; };
 		359731AB15C334E100400D87 /* UIImage+RWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RWExtensions.h"; sourceTree = "<group>"; };
 		359731AC15C334E100400D87 /* UIImage+RWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RWExtensions.m"; sourceTree = "<group>"; };
 		359731ED15C3363700400D87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -146,8 +143,7 @@
 		35F6540E18292F7C004A1212 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35F6540F18292F7C004A1212 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35F6541018292F7C004A1212 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
-		35F95B72182AA07100E27AD3 /* JSNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotifier.h; sourceTree = "<group>"; };
-		35F95B73182AA07100E27AD3 /* JSNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotifier.m; sourceTree = "<group>"; };
+		4A041EFD1C0C91DE0022D999 /* PrettyBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrettyBytes.swift; path = PrettyBytes/PrettyBytes.swift; sourceTree = "<group>"; };
 		4A160D181BE7BD0C00952FA3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -453,9 +449,10 @@
 		3597318315C334E100400D87 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				4A041EFD1C0C91DE0022D999 /* PrettyBytes.swift */,
+				4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */,
 				4ABEB86C1BF9D08700AFDBB9 /* VerifyStoreReceiptiOS */,
 				4ABEB8111BF9CA2600AFDBB9 /* OpenSSL */,
-				35F95B71182AA07100E27AD3 /* JSNotifier */,
 				35F6540D18292F7C004A1212 /* ProgressHUD */,
 				359731A415C334E100400D87 /* PrettyBytes */,
 				359731AA15C334E100400D87 /* UIImage+RWExtensions */,
@@ -466,8 +463,6 @@
 		359731A415C334E100400D87 /* PrettyBytes */ = {
 			isa = PBXGroup;
 			children = (
-				359731A515C334E100400D87 /* PrettyBytes.h */,
-				359731A615C334E100400D87 /* PrettyBytes.m */,
 			);
 			path = PrettyBytes;
 			sourceTree = "<group>";
@@ -489,16 +484,6 @@
 				35F6541018292F7C004A1212 /* ProgressHUD.m */,
 			);
 			path = ProgressHUD;
-			sourceTree = "<group>";
-		};
-		35F95B71182AA07100E27AD3 /* JSNotifier */ = {
-			isa = PBXGroup;
-			children = (
-				4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */,
-				35F95B72182AA07100E27AD3 /* JSNotifier.h */,
-				35F95B73182AA07100E27AD3 /* JSNotifier.m */,
-			);
-			path = JSNotifier;
 			sourceTree = "<group>";
 		};
 		4A160D1A1BE7C35500952FA3 /* In-App Purchases */ = {
@@ -903,16 +888,15 @@
 				4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */,
 				4A6AD8C11BF2533900DE3CDD /* HMViewController.swift in Sources */,
 				4A33ED301BEFFF2A006E23B8 /* HMSettingsViewController.swift in Sources */,
-				35F95B74182AA07100E27AD3 /* JSNotifier.m in Sources */,
 				4A33ED2C1BEE5B6B006E23B8 /* AppDelegate.swift in Sources */,
 				4A411A6B1BE7A66500BE0709 /* HMWords.swift in Sources */,
+				4A041EFE1C0C91DE0022D999 /* PrettyBytes.swift in Sources */,
 				3597317A15C3345800400D87 /* HMThemeViewController.m in Sources */,
 				3597317B15C3345800400D87 /* HMViewController.m in Sources */,
 				4A73FADC1BF0D2DE001EAD68 /* PESmallNotifier.swift in Sources */,
 				3597317C15C3345800400D87 /* HMWordsViewController.m in Sources */,
 				4A6AD8BB1BF2486800DE3CDD /* HMContentController.swift in Sources */,
 				4ADAE3E91BE7E05C00CC0C8B /* HMStoreListViewCell.swift in Sources */,
-				359731BD15C334E100400D87 /* PrettyBytes.m in Sources */,
 				35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */,
 				4ABEB8831BFA1CEA00AFDBB9 /* IAPProductInfo.swift in Sources */,
 				4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */,
@@ -1191,6 +1175,7 @@
 				4A8163C71C0C58C5002EDA46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A8163CD1C0C58E3002EDA46 /* Build configuration list for PBXNativeTarget "zombie" */ = {
 			isa = XCConfigurationList;
@@ -1199,6 +1184,7 @@
 				4A8163CF1C0C58E3002EDA46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

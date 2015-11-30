@@ -43,6 +43,7 @@ class HMStoreDetailViewController: UIViewController {
         
         product.addObserver(self, forKeyPath: "purchaseInProgress", options: [], context: nil)
         product.addObserver(self, forKeyPath: "purchase", options: [], context: nil)
+        product.addObserver(self, forKeyPath: "progress", options: [], context: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -57,13 +58,25 @@ class HMStoreDetailViewController: UIViewController {
     }
 
     func refresh() {
-        title = product.skProduct!.localizedTitle
+        guard let skProduct = product.skProduct else {
+            print("skProduct not initialized...")
+            return
+        }
         
-        titleLabel.text = product.skProduct!.localizedTitle
-        descriptionTextView.text = product.skProduct!.localizedDescription
-        priceFormatter.locale = product.skProduct!.priceLocale
-        priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
-        versionLabel.text = "Version 1.0"
+        if skProduct.downloadable {
+            let numBytes = skProduct.downloadContentLengths.first?.integerValue ?? 0
+            let numBytesString = prettyBytes(numBytes)
+            versionLabel.text = "Version \(skProduct.downloadContentVersion) (\(numBytesString))"
+        } else {
+            versionLabel.text = "Version 1.0"
+        }
+        
+        title = skProduct.localizedTitle
+        titleLabel.text = skProduct.localizedTitle
+        descriptionTextView.text = skProduct.localizedDescription
+        priceFormatter.locale = skProduct.priceLocale
+        priceLabel.text = priceFormatter.stringFromNumber(skProduct.price)
+        
         
         if product.allowedToPurchase() {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .Plain, target: self, action: "buyTapped:")
@@ -75,6 +88,88 @@ class HMStoreDetailViewController: UIViewController {
         pauseButton.hidden = true
         resumeButton.hidden = true
         cancelButton.hidden = true
+        
+        if product.purchaseInProgress {
+            
+            statusLabel.hidden = false
+            progressView.hidden = false
+            
+            if let skDownload = product.skDownload {
+                //Content provided from Apple Server
+                pauseButton.hidden = false
+                resumeButton.hidden = false
+                cancelButton.hidden = false
+            
+                switch skDownload.downloadState {
+                case .Active:
+                    if skDownload.timeRemaining >= 0 {
+                        statusLabel.text = String(format:"Active %0.2s remaining...", skDownload.timeRemaining)
+                    } else {
+                        statusLabel.text = "Active..."
+                    }
+                    
+                case .Waiting:
+                    if skDownload.timeRemaining >= 0 {
+                        statusLabel.text = String(format:"Waiting %0.2s remaining...", skDownload.timeRemaining)
+                    } else {
+                        statusLabel.text = "Waiting..."
+                    }
+                
+                case .Finished:
+                    statusLabel.text = "Download finished."
+
+                case .Failed:
+                    statusLabel.text = "Download failed."
+                    
+                case .Paused:
+                    statusLabel.text = "Download paused."
+                    
+                case .Cancelled:
+                    statusLabel.text = "Download cancelled."
+                    
+                }
+                
+                progressView.progress = product.progress
+            
+            } else {
+                //Installing content
+                statusLabel.text = "Installing..."
+                progressView.progress = product.progress
+            }
+            
+        } else if let purchase = product.purchase {
+            
+            if !purchase.consumable {
+            
+                statusLabel.hidden = false
+                progressView.hidden = true
+            
+                if !skProduct.downloadContentVersion.isEmpty && skProduct.downloadContentVersion != purchase.contentVersion {
+                    statusLabel.text = "Update Available, Please Restore."
+                } else {
+                    statusLabel.text = "Installed."
+                }
+            
+            } else {
+                
+                statusLabel.hidden = false
+                progressView.hidden = true
+                
+                guard let info = product.info else {
+                    fatalError("Unexpected info.")
+                }
+                
+                let newValue = NSUserDefaults.standardUserDefaults().integerForKey(info.consumableIdentifier)
+                statusLabel.text = "Current value: \(newValue)"
+            
+            }
+            
+        } else {
+            
+            statusLabel.hidden = true
+            progressView.hidden = true
+            
+        }
         
     }
     

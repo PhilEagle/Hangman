@@ -17,7 +17,7 @@ class IAPProduct: NSObject {
     var skProduct: SKProduct?
     
     //properties to manage download content from apple
-    var progress: Float = 0.0
+    dynamic var progress: Float = 0.0
     var skDownload: SKDownload?
     
     dynamic var purchaseInProgress: Bool        // toggle KVO with dynamic keyword
