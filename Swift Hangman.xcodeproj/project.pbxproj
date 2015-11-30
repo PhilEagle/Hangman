@@ -44,6 +44,8 @@
 		4A6AD8C21BF255A500DE3CDD /* EasyWords in Resources */ = {isa = PBXBuildFile; fileRef = 3547CD2B15AE223F00EC99D0 /* EasyWords */; };
 		4A6AD8C31BF255B200DE3CDD /* Stickman in Resources */ = {isa = PBXBuildFile; fileRef = 3547CD2815AE213F00EC99D0 /* Stickman */; };
 		4A73FADC1BF0D2DE001EAD68 /* PESmallNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */; };
+		4A8163BE1C0C5557002EDA46 /* robot in Resources */ = {isa = PBXBuildFile; fileRef = 4A8163BC1C0C5557002EDA46 /* robot */; };
+		4A8163BF1C0C5557002EDA46 /* zombie in Resources */ = {isa = PBXBuildFile; fileRef = 4A8163BD1C0C5557002EDA46 /* zombie */; };
 		4AAC3D371BF35BAB00C6C9E1 /* HardWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D351BF35BAB00C6C9E1 /* HardWords */; };
 		4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D361BF35BAB00C6C9E1 /* iOSWords */; };
 		4AB068A81C035DCE0072F700 /* IAPProductPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB068A71C035DCE0072F700 /* IAPProductPurchase.swift */; };
@@ -111,6 +113,8 @@
 		4A6AD8BE1BF252B900DE3CDD /* HMWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWordsViewController.swift; sourceTree = "<group>"; };
 		4A6AD8C01BF2533900DE3CDD /* HMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMViewController.swift; sourceTree = "<group>"; };
 		4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PESmallNotifier.swift; path = hangman/libs/JSNotifier/PESmallNotifier.swift; sourceTree = SOURCE_ROOT; };
+		4A8163BC1C0C5557002EDA46 /* robot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = robot; sourceTree = "<group>"; };
+		4A8163BD1C0C5557002EDA46 /* zombie */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zombie; sourceTree = "<group>"; };
 		4AAC3D351BF35BAB00C6C9E1 /* HardWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HardWords; sourceTree = "<group>"; };
 		4AAC3D361BF35BAB00C6C9E1 /* iOSWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOSWords; sourceTree = "<group>"; };
 		4AB068A71C035DCE0072F700 /* IAPProductPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IAPProductPurchase.swift; path = "Hangman/In-App Purchases/IAPProductPurchase.swift"; sourceTree = SOURCE_ROOT; };
@@ -294,6 +298,8 @@
 		3573DFA215ACA1A100D37742 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4A8163BC1C0C5557002EDA46 /* robot */,
+				4A8163BD1C0C5557002EDA46 /* zombie */,
 				4AAC3D351BF35BAB00C6C9E1 /* HardWords */,
 				4AAC3D361BF35BAB00C6C9E1 /* iOSWords */,
 				3547CD2B15AE223F00EC99D0 /* EasyWords */,
@@ -587,6 +593,7 @@
 			files = (
 				4A6AD8C31BF255B200DE3CDD /* Stickman in Resources */,
 				4A6AD8C21BF255A500DE3CDD /* EasyWords in Resources */,
+				4A8163BF1C0C5557002EDA46 /* zombie in Resources */,
 				35F6541118292F7C004A1212 /* ProgressHUD.bundle in Resources */,
 				3573DF9015AC9F7800D37742 /* InfoPlist.strings in Resources */,
 				3547CCDC15AE1AB400EC99D0 /* attribution.txt in Resources */,
@@ -597,6 +604,7 @@
 				3547CCEC15AE1BB800EC99D0 /* stand.png in Resources */,
 				4ABEB8631BF9CA2600AFDBB9 /* LICENSE in Resources */,
 				3547CCED15AE1BB800EC99D0 /* stand@2x.png in Resources */,
+				4A8163BE1C0C5557002EDA46 /* robot in Resources */,
 				4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */,
 				4A33ED2A1BEE5A63006E23B8 /* LaunchScreen.storyboard in Resources */,
 				3597318215C3349F00400D87 /* MainStoryboard.storyboard in Resources */,

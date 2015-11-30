@@ -10,6 +10,6 @@ import Foundation
 
 extension HMThemeViewController {
     func registerNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "unlockedThemesChanged", name: HMContentControllerCurrentThemeDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "unlockedThemesChanged:", name: HMContentControllerCurrentThemeDidChangeNotification, object: nil)
     }
 }

@@ -49,10 +49,14 @@ class HMContentController: NSObject {
         
         super.init()
         
-        let resourceURL = NSBundle.mainBundle().resourceURL
+        guard let resourceURL = NSBundle.mainBundle().resourceURL else {
+            fatalError("Resource folder unavailable")
+        }
         
-        unlockThemeWithDirURL(resourceURL!.URLByAppendingPathComponent("Stickman"))
-        unlockWordsWithDirURL(resourceURL!.URLByAppendingPathComponent("EasyWords"))
+        unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("Stickman"))
+        unlockWordsWithDirURL(resourceURL.URLByAppendingPathComponent("EasyWords"))
+        unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("robot"))
+        unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("zombie"))
         
         let hasRunBefore = NSUserDefaults.standardUserDefaults().boolForKey("hasRunBefore")
         if !hasRunBefore {
