@@ -454,17 +454,9 @@
 				4ABEB86C1BF9D08700AFDBB9 /* VerifyStoreReceiptiOS */,
 				4ABEB8111BF9CA2600AFDBB9 /* OpenSSL */,
 				35F6540D18292F7C004A1212 /* ProgressHUD */,
-				359731A415C334E100400D87 /* PrettyBytes */,
 				359731AA15C334E100400D87 /* UIImage+RWExtensions */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		359731A415C334E100400D87 /* PrettyBytes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PrettyBytes;
 			sourceTree = "<group>";
 		};
 		359731AA15C334E100400D87 /* UIImage+RWExtensions */ = {

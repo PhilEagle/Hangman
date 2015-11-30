@@ -195,7 +195,7 @@ class IAPHelper: NSObject {
     }
     
     
-    // MARK: - Load/Save locally current purchased products
+    //MARK: - Load/Save locally current purchased products
     private func loadPurchases() {
         print("loadPurchases()")
         
@@ -228,6 +228,20 @@ class IAPHelper: NSObject {
         if !success {
             print("Failed to save purchases to \(purchasePath())")
         }
+    }
+    
+    
+    //MARK: - Manage SKDownload
+    func pauseDownloads(downloads: [SKDownload]) {
+        SKPaymentQueue.defaultQueue().pauseDownloads(downloads)
+    }
+    
+    func resumeDownloads(downloads: [SKDownload]) {
+        SKPaymentQueue.defaultQueue().resumeDownloads(downloads)
+    }
+    
+    func cancelDownloads(downloads: [SKDownload]) {
+        SKPaymentQueue.defaultQueue().cancelDownloads(downloads)
     }
 }
 

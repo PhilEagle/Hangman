@@ -181,12 +181,21 @@ class HMStoreDetailViewController: UIViewController {
     }
     
     @IBAction func pauseTapped(sender: UIButton) {
+        if let skDownload = product.skDownload {
+            HMIAPHelper.sharedInstance.pauseDownloads([skDownload])
+        }
     }
     
     @IBAction func resumeTapped(sender: UIButton) {
+        if let skDownload = product.skDownload {
+            HMIAPHelper.sharedInstance.resumeDownloads([skDownload])
+        }
     }
     
     @IBAction func cancelTapped(sender: UIButton) {
+        if let skDownload = product.skDownload {
+            HMIAPHelper.sharedInstance.cancelDownloads([skDownload])
+        }
     }
 
 }
