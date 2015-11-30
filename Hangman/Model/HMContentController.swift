@@ -53,10 +53,13 @@ class HMContentController: NSObject {
             fatalError("Resource folder unavailable")
         }
         
+        // Theme and Words Pack base install
         unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("Stickman"))
         unlockWordsWithDirURL(resourceURL.URLByAppendingPathComponent("EasyWords"))
-        unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("robot"))
-        unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("zombie"))
+        
+        //unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("robot"))
+        //unlockThemeWithDirURL(resourceURL.URLByAppendingPathComponent("zombie"))
+
         
         let hasRunBefore = NSUserDefaults.standardUserDefaults().boolForKey("hasRunBefore")
         if !hasRunBefore {
