@@ -66,6 +66,7 @@ class HMStoreListViewController: UITableViewController {
         for product in products! {
             product.addObserver(self, forKeyPath: "purchaseInProgress", options: [], context: nil)
             product.addObserver(self, forKeyPath: "purchase", options: [], context: nil)
+            product.addObserver(self, forKeyPath: "progress", options: [], context: nil)
         }
     }
     
@@ -77,6 +78,7 @@ class HMStoreListViewController: UITableViewController {
         for product in products! {
             product.removeObserver(self, forKeyPath: "purchaseInProgress")
             product.removeObserver(self, forKeyPath: "purchase")
+            product.removeObserver(self, forKeyPath: "progress")
         }
         
     }
@@ -104,7 +106,11 @@ class HMStoreListViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HMStoreListViewCell
         
-        let product = products![indexPath.row]
+        guard let product = products?[indexPath.row], skProduct = product.skProduct else {
+            print("Unabled to retrieve products infos for the moment.")
+            return cell
+        }
+        
         cell.iconImageView.image = UIImage(named: "icon_placeholder.png")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
             let url = NSURL(string: product.info!.icon)
@@ -118,14 +124,40 @@ class HMStoreListViewController: UITableViewController {
             })
         }
         
-        cell.titleLabel.text = product.skProduct!.localizedTitle
-        cell.descriptionLabel.text = product.skProduct!.localizedDescription
-        priceFormatter.locale = product.skProduct!.priceLocale
+        cell.titleLabel.text = skProduct.localizedTitle
+        cell.descriptionLabel.text = skProduct.localizedDescription
+        priceFormatter.locale = skProduct.priceLocale
         
-        if (product.purchase?.consumable != true && product.purchase != nil) {
-            cell.priceLabel.text = "Installed"
+        if product.purchaseInProgress {
+            
+            cell.priceLabel.text = "Installing"
+        
+        } else if product.purchase?.consumable == false && product.purchase != nil {
+            
+            if skProduct.downloadContentVersion.isEmpty == false && skProduct.downloadContentVersion != product.purchase?.contentVersion {
+                cell .priceLabel.text = "Update"
+            } else {
+                cell .priceLabel.text = "Installed"
+            }
+        
+        } else if product.allowedToPurchase() {
+            
+            cell.priceLabel.text = priceFormatter.stringFromNumber(skProduct.price)
+            
         } else {
-            cell.priceLabel.text = priceFormatter.stringFromNumber(product.skProduct!.price)
+            
+            print("Unexpected product state!")
+            cell.priceLabel.text = ""
+            
+        }
+        
+        if product.skDownload?.downloadState == .Active {
+            cell.descriptionLabel.hidden = true
+            cell.progressView.hidden = false
+            cell.progressView.progress = product.progress
+        } else {
+            cell.descriptionLabel.hidden = false
+            cell.progressView.hidden = true
         }
         
         return cell

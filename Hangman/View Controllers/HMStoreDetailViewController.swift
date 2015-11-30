@@ -51,6 +51,7 @@ class HMStoreDetailViewController: UIViewController {
         
         product.removeObserver(self, forKeyPath: "purchaseInProgress")
         product.removeObserver(self, forKeyPath: "purchase")
+        product.removeObserver(self, forKeyPath: "progress")
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
