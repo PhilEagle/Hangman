@@ -96,6 +96,71 @@
             </objects>
             <point key="canvasLocation" x="584" y="45.999999999999993"/>
         </scene>
+        <!--Music View Controller-->
+        <scene sceneID="J5c-4H-E3O">
+            <objects>
+                <tableViewController id="1Ei-Mc-aMm" customClass="HMMusicViewController" customModule="Swift_Hangman" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="FfK-X5-W59">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="pJk-3H-9gm" customClass="HMMusicCell" customModule="Swift_Hangman" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pJk-3H-9gm" id="qNd-IJ-iSs">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TX7-Na-jbO">
+                                            <rect key="frame" x="8" y="0.0" width="75" height="71"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Castelvania" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJf-Vl-n2u">
+                                            <rect key="frame" x="91" y="8" width="163" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Video Games live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cur-CS-Bpr">
+                                            <rect key="frame" x="91" y="37" width="221" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQG-jM-eqB">
+                                            <rect key="frame" x="262" y="11" width="50" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="cur-CS-Bpr" id="Sem-cq-A8f"/>
+                                    <outlet property="iconImageView" destination="TX7-Na-jbO" id="Qbn-Pj-GcO"/>
+                                    <outlet property="priceLabel" destination="oQG-jM-eqB" id="j17-Oi-RpM"/>
+                                    <outlet property="titleLabel" destination="YJf-Vl-n2u" id="e3C-g2-1Nq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Ei-Mc-aMm" id="pgh-4l-SSP"/>
+                            <outlet property="delegate" destination="1Ei-Mc-aMm" id="csi-JF-56F"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="sJ2-n9-DZr"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BN9-RS-Uk9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1112" y="1106"/>
+        </scene>
         <!--Store-->
         <scene sceneID="vZd-Fp-yR4">
             <objects>
@@ -199,6 +264,7 @@
                     <navigationItem key="navigationItem" title="Store" id="OoZ-U5-KmS"/>
                     <connections>
                         <segue destination="qax-g7-X3z" kind="push" identifier="PushDetail" id="PAc-35-d2g"/>
+                        <segue destination="1Ei-Mc-aMm" kind="push" identifier="PushMusic" id="GU8-e1-mk6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePY-kA-RCU" userLabel="First Responder" sceneMemberID="firstResponder"/>

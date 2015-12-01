@@ -199,8 +199,7 @@ class HMStoreListViewController: UITableViewController {
         if indexPath.row < products?.count {
             performSegueWithIdentifier("PushDetail", sender: indexPath)
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            showMusicStore()
+            performSegueWithIdentifier("PushMusic", sender: indexPath)
         }
     }
     
@@ -255,8 +254,6 @@ extension HMStoreListViewController: SKStoreProductViewControllerDelegate {
                 strongSelf.presentViewController(viewController, animated: true, completion: nil)
             } else {
                 print("Failed to load products: \(error?.localizedDescription)")
-                let notify = PESmallNotifier(title: "Failed to load products: \(error?.localizedDescription)")
-                notify.showFor(5)
             }
         }
         

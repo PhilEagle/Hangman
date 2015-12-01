@@ -95,6 +95,9 @@
 		4A8164331C0C59C7002EDA46 /* zombieWin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A8164181C0C59C7002EDA46 /* zombieWin.wav */; };
 		4AAC3D371BF35BAB00C6C9E1 /* HardWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D351BF35BAB00C6C9E1 /* HardWords */; };
 		4AAC3D381BF35BAB00C6C9E1 /* iOSWords in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC3D361BF35BAB00C6C9E1 /* iOSWords */; };
+		4AAED71A1C0DB61C00B322FE /* HMMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAED7191C0DB61C00B322FE /* HMMusicCell.swift */; };
+		4AAED71C1C0DB70A00B322FE /* HMMusicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAED71B1C0DB70A00B322FE /* HMMusicInfo.swift */; };
+		4AAED71E1C0DB81400B322FE /* HMMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAED71D1C0DB81400B322FE /* HMMusicViewController.swift */; };
 		4AB068A81C035DCE0072F700 /* IAPProductPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB068A71C035DCE0072F700 /* IAPProductPurchase.swift */; };
 		4ABEB8631BF9CA2600AFDBB9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4ABEB8131BF9CA2600AFDBB9 /* LICENSE */; };
 		4ABEB8641BF9CA2600AFDBB9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ABEB8611BF9CA2600AFDBB9 /* libcrypto.a */; };
@@ -215,6 +218,9 @@
 		4A8164181C0C59C7002EDA46 /* zombieWin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = zombieWin.wav; sourceTree = "<group>"; };
 		4AAC3D351BF35BAB00C6C9E1 /* HardWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HardWords; sourceTree = "<group>"; };
 		4AAC3D361BF35BAB00C6C9E1 /* iOSWords */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iOSWords; sourceTree = "<group>"; };
+		4AAED7191C0DB61C00B322FE /* HMMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMusicCell.swift; sourceTree = "<group>"; };
+		4AAED71B1C0DB70A00B322FE /* HMMusicInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMusicInfo.swift; sourceTree = "<group>"; };
+		4AAED71D1C0DB81400B322FE /* HMMusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMMusicViewController.swift; sourceTree = "<group>"; };
 		4AB068A71C035DCE0072F700 /* IAPProductPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IAPProductPurchase.swift; path = "Hangman/In-App Purchases/IAPProductPurchase.swift"; sourceTree = SOURCE_ROOT; };
 		4ABEB8131BF9CA2600AFDBB9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4ABEB8151BF9CA2600AFDBB9 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -422,6 +428,7 @@
 				4A6AD8BA1BF2486800DE3CDD /* HMContentController.swift */,
 				4A411A6A1BE7A66500BE0709 /* HMWords.swift */,
 				4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */,
+				4AAED71B1C0DB70A00B322FE /* HMMusicInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +449,8 @@
 				4ADAE3E61BE7DD7D00CC0C8B /* HMStoreListViewController.swift */,
 				4ADAE3E81BE7E05C00CC0C8B /* HMStoreListViewCell.swift */,
 				4ADAE3E41BE7D9FA00CC0C8B /* HMStoreDetailViewController.swift */,
+				4AAED7191C0DB61C00B322FE /* HMMusicCell.swift */,
+				4AAED71D1C0DB81400B322FE /* HMMusicViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -878,6 +887,7 @@
 				4ABEB8711BF9D08700AFDBB9 /* VerifyStoreReceipt.m in Sources */,
 				3597315E15C3340000400D87 /* HMTheme.m in Sources */,
 				4A160D1C1BE7C3CB00952FA3 /* IAPHelper.swift in Sources */,
+				4AAED71E1C0DB81400B322FE /* HMMusicViewController.swift in Sources */,
 				4A6AD8C11BF2533900DE3CDD /* HMViewController.swift in Sources */,
 				4A33ED301BEFFF2A006E23B8 /* HMSettingsViewController.swift in Sources */,
 				4A33ED2C1BEE5B6B006E23B8 /* AppDelegate.swift in Sources */,
@@ -892,7 +902,9 @@
 				35F6541218292F7C004A1212 /* ProgressHUD.m in Sources */,
 				4ABEB8831BFA1CEA00AFDBB9 /* IAPProductInfo.swift in Sources */,
 				4ADAE3E21BE7D82C00CC0C8B /* HMIAPHelper.swift in Sources */,
+				4AAED71A1C0DB61C00B322FE /* HMMusicCell.swift in Sources */,
 				359731BF15C334E100400D87 /* UIImage+RWExtensions.m in Sources */,
+				4AAED71C1C0DB70A00B322FE /* HMMusicInfo.swift in Sources */,
 				4ADAE3E71BE7DD7D00CC0C8B /* HMStoreListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
