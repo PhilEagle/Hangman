@@ -8,3 +8,5 @@
 #import "HMWordsViewController.h"
 
 #import "VerifyStoreReceipt.h"
+
+#import "ProgressHUD.h"

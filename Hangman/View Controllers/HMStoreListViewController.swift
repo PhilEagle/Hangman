@@ -57,6 +57,23 @@ class HMStoreListViewController: UITableViewController {
         removeObservers()
     }
     
+    func reload() {
+        products = nil
+        tableView.reloadData()
+        
+        HMIAPHelper.sharedInstance.requestProductsWithCompletionHandler { [weak self] (success, products) -> () in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if success {
+                strongSelf.products = products
+                strongSelf.tableView.reloadData()
+            }
+            strongSelf.refreshControl?.endRefreshing()
+        }
+    }
+    
     //MARK: - KVO
     private func addObservers() {
         if observing || products == nil { return }
@@ -100,75 +117,95 @@ class HMStoreListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products?.count ?? 0
+        return (products?.count ?? 0) + 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! HMStoreListViewCell
         
-        guard let product = products?[indexPath.row], skProduct = product.skProduct else {
-            print("Unabled to retrieve products infos for the moment.")
-            return cell
-        }
-        
-        cell.iconImageView.image = UIImage(named: "icon_placeholder.png")
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-            let url = NSURL(string: product.info!.icon)
-            let data = NSData(contentsOfURL: url!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                guard let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? HMStoreListViewCell, let data = data else {
-                    return
+        if indexPath.row < products?.count {
+            //show inapp products
+            
+            guard let product = products?[indexPath.row], skProduct = product.skProduct else {
+                print("Unabled to retrieve products infos for the moment.")
+                return cell
+            }
+            
+            cell.iconImageView.image = UIImage(named: "icon_placeholder.png")
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+                let url = NSURL(string: product.info!.icon)
+                let data = NSData(contentsOfURL: url!)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    guard let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? HMStoreListViewCell, let data = data else {
+                        return
+                    }
+                    
+                    cellToUpdate.iconImageView.image = UIImage(data: data)
+                })
+            }
+            
+            cell.titleLabel.text = skProduct.localizedTitle
+            cell.descriptionLabel.text = skProduct.localizedDescription
+            priceFormatter.locale = skProduct.priceLocale
+            
+            if product.purchaseInProgress {
+                
+                cell.priceLabel.text = "Installing"
+                
+            } else if product.purchase?.consumable == false && product.purchase != nil {
+                
+                if skProduct.downloadContentVersion.isEmpty == false && skProduct.downloadContentVersion != product.purchase?.contentVersion {
+                    cell .priceLabel.text = "Update"
+                } else {
+                    cell .priceLabel.text = "Installed"
                 }
                 
-                cellToUpdate.iconImageView.image = UIImage(data: data)
-            })
-        }
-        
-        cell.titleLabel.text = skProduct.localizedTitle
-        cell.descriptionLabel.text = skProduct.localizedDescription
-        priceFormatter.locale = skProduct.priceLocale
-        
-        if product.purchaseInProgress {
-            
-            cell.priceLabel.text = "Installing"
-        
-        } else if product.purchase?.consumable == false && product.purchase != nil {
-            
-            if skProduct.downloadContentVersion.isEmpty == false && skProduct.downloadContentVersion != product.purchase?.contentVersion {
-                cell .priceLabel.text = "Update"
+            } else if product.allowedToPurchase() {
+                
+                cell.priceLabel.text = priceFormatter.stringFromNumber(skProduct.price)
+                
             } else {
-                cell .priceLabel.text = "Installed"
+                
+                print("Unexpected product state!")
+                cell.priceLabel.text = ""
+                
+            }
+            
+            if product.skDownload?.downloadState == .Active {
+                cell.descriptionLabel.hidden = true
+                cell.progressView.hidden = false
+                cell.progressView.progress = product.progress
+            } else {
+                cell.descriptionLabel.hidden = false
+                cell.progressView.hidden = true
             }
         
-        } else if product.allowedToPurchase() {
-            
-            cell.priceLabel.text = priceFormatter.stringFromNumber(skProduct.price)
-            
         } else {
+            //show last row with music from itunes
             
-            print("Unexpected product state!")
-            cell.priceLabel.text = ""
-            
-        }
-        
-        if product.skDownload?.downloadState == .Active {
-            cell.descriptionLabel.hidden = true
-            cell.progressView.hidden = false
-            cell.progressView.progress = product.progress
-        } else {
+            cell.iconImageView.image = UIImage(named: "icon_music.png")
+            cell.descriptionLabel.text = "Get some great music for the game!"
+            cell.priceLabel.text = "Various"
             cell.descriptionLabel.hidden = false
             cell.progressView.hidden = true
-        }
         
+        }
+            
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("PushDetail", sender: indexPath)
+        
+        if indexPath.row < products?.count {
+            performSegueWithIdentifier("PushDetail", sender: indexPath)
+        } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            showMusicStore()
+        }
     }
     
     
-    //MARK: Segues
+    //MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushDetail" {
             let detailViewController = segue.destinationViewController as! HMStoreDetailViewController
@@ -178,22 +215,6 @@ class HMStoreListViewController: UITableViewController {
         }
     }
     
-    func reload() {
-        products = nil
-        tableView.reloadData()
-        
-        HMIAPHelper.sharedInstance.requestProductsWithCompletionHandler { [weak self] (success, products) -> () in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            if success {
-                strongSelf.products = products
-                strongSelf.tableView.reloadData()
-            }
-            strongSelf.refreshControl?.endRefreshing()
-        }
-    }
     
     //MARK: - Interface
     func doneTapped(sender: UIBarButtonItem) {
@@ -208,4 +229,42 @@ class HMStoreListViewController: UITableViewController {
         
         presentViewController(alert, animated: true, completion: nil)
     }
+}
+
+//MARK: - Music Store
+extension HMStoreListViewController: SKStoreProductViewControllerDelegate {
+    
+    private func showMusicStore() {
+        //Warning: not functionning with this app
+        
+        ProgressHUD.show("Loading")
+        
+        let viewController = SKStoreProductViewController()
+        viewController.delegate = self
+        
+        let parameters = [SKStoreProductParameterITunesItemIdentifier: "268585533"]
+        viewController.loadProductWithParameters(parameters) { [weak self] (result: Bool, error: NSError?) -> Void in
+            
+            ProgressHUD.dismiss()
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if result {
+                strongSelf.presentViewController(viewController, animated: true, completion: nil)
+            } else {
+                print("Failed to load products: \(error?.localizedDescription)")
+                let notify = PESmallNotifier(title: "Failed to load products: \(error?.localizedDescription)")
+                notify.showFor(5)
+            }
+        }
+        
+    }
+    
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
+        print("Finished shopping!")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
