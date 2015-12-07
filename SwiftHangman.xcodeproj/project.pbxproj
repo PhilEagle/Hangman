@@ -125,9 +125,9 @@
 		3573DF8515AC9F7800D37742 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3573DF8715AC9F7800D37742 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3573DF8915AC9F7800D37742 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3573DF8D15AC9F7800D37742 /* SwiftHangman-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwiftHangman-Info.plist"; sourceTree = "<group>"; };
+		3573DF8D15AC9F7800D37742 /* SwiftHangman-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SwiftHangman-Info.plist"; path = "../SwiftHangman-Info.plist"; sourceTree = "<group>"; };
 		3573DF8F15AC9F7800D37742 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3573DF9315AC9F7800D37742 /* SwiftHangman-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftHangman-Prefix.pch"; sourceTree = "<group>"; };
+		3573DF9315AC9F7800D37742 /* SwiftHangman-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SwiftHangman-Prefix.pch"; path = "../SwiftHangman-Prefix.pch"; sourceTree = "<group>"; };
 		3597315315C3340000400D87 /* HMGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGame.h; sourceTree = "<group>"; };
 		3597315415C3340000400D87 /* HMGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGame.m; sourceTree = "<group>"; };
 		3597315715C3340000400D87 /* HMTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTheme.h; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		359731AB15C334E100400D87 /* UIImage+RWExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RWExtensions.h"; sourceTree = "<group>"; };
 		359731AC15C334E100400D87 /* UIImage+RWExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RWExtensions.m"; sourceTree = "<group>"; };
 		359731ED15C3363700400D87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		35F6540B18292D4B004A1212 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		35F6540B18292D4B004A1212 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		35F6540E18292F7C004A1212 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35F6540F18292F7C004A1212 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35F6541018292F7C004A1212 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		4A33ED2B1BEE5B6B006E23B8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A33ED2D1BEE8151006E23B8 /* IAPProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		4A33ED2F1BEFFF2A006E23B8 /* HMSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMSettingsViewController.swift; path = "SwiftHangman/View Controllers/HMSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
-		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Hangman-Bridging-Header.h"; path = "../Hangman-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A411A6A1BE7A66500BE0709 /* HMWords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWords.swift; sourceTree = "<group>"; };
 		4A6AD8BA1BF2486800DE3CDD /* HMContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMContentController.swift; path = SwiftHangman/Model/HMContentController.swift; sourceTree = SOURCE_ROOT; };
 		4A6AD8BC1BF2518300DE3CDD /* HMThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMThemeViewController.swift; path = "SwiftHangman/View Controllers/HMThemeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -394,7 +394,6 @@
 		3573DF8C15AC9F7800D37742 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				35F6540B18292D4B004A1212 /* Images.xcassets */,
 				4A33ED2B1BEE5B6B006E23B8 /* AppDelegate.swift */,
 				4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */,
 				3573DF8D15AC9F7800D37742 /* SwiftHangman-Info.plist */,
@@ -402,12 +401,13 @@
 				3573DF9315AC9F7800D37742 /* SwiftHangman-Prefix.pch */,
 				4A411A691BE7A66500BE0709 /* Hangman-Bridging-Header.h */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3573DFA215ACA1A100D37742 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35F6540B18292D4B004A1212 /* Images.xcassets */,
 				4A8163BC1C0C5557002EDA46 /* robot */,
 				4A8163BD1C0C5557002EDA46 /* zombie */,
 				4AAC3D351BF35BAB00C6C9E1 /* HardWords */,
