@@ -146,7 +146,7 @@
 		35F6540E18292F7C004A1212 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35F6540F18292F7C004A1212 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35F6541018292F7C004A1212 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
-		4A041EFD1C0C91DE0022D999 /* PrettyBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrettyBytes.swift; path = PrettyBytes/PrettyBytes.swift; sourceTree = "<group>"; };
+		4A041EFD1C0C91DE0022D999 /* PrettyBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrettyBytes.swift; path = PELibs/PrettyBytes.swift; sourceTree = "<group>"; };
 		4A160D181BE7BD0C00952FA3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A160D1B1BE7C3CB00952FA3 /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		4A33ED291BEE5A63006E23B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		4A6AD8BC1BF2518300DE3CDD /* HMThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMThemeViewController.swift; path = "SwiftHangman/View Controllers/HMThemeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		4A6AD8BE1BF252B900DE3CDD /* HMWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMWordsViewController.swift; sourceTree = "<group>"; };
 		4A6AD8C01BF2533900DE3CDD /* HMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMViewController.swift; sourceTree = "<group>"; };
-		4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PESmallNotifier.swift; path = SwiftHangman/libs/JSNotifier/PESmallNotifier.swift; sourceTree = SOURCE_ROOT; };
+		4A73FADB1BF0D2DE001EAD68 /* PESmallNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PESmallNotifier.swift; path = SwiftHangman/libs/PELibs/PESmallNotifier.swift; sourceTree = SOURCE_ROOT; };
 		4A8163BC1C0C5557002EDA46 /* robot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = robot; sourceTree = "<group>"; };
 		4A8163BD1C0C5557002EDA46 /* zombie */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zombie; sourceTree = "<group>"; };
 		4A8163C21C0C58C5002EDA46 /* robot */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = robot; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -919,6 +919,7 @@
 				3573DF8F15AC9F7800D37742 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
